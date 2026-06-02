@@ -672,4 +672,25 @@
             msg.innerHTML = `🤖 ${text}`; 
         } else { 
             msg.style.background = 'var(--bg-primary)'; 
-            msg.style.border = `1px solid var(--ac
+            msg.style.border = `1px solid var(--accent)`; 
+            msg.style.marginLeft = 'auto'; 
+            msg.innerHTML = `👤 ${text}`; 
+        }
+        chatDiv.appendChild(msg);
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+    }
+    document.getElementById('sendChat')?.addEventListener('click', () => {
+        let inp = document.getElementById('chatInput');
+        let txt = inp.value.trim();
+        if(!txt) return;
+        addMessage(txt, false);
+        addMessage(botAnswer(txt), true);
+        inp.value = '';
+    });
+    document.getElementById('chatInput')?.addEventListener('keypress', (e) => { if(e.key === 'Enter') document.getElementById('sendChat').click(); });
+    document.getElementById('qSust')?.addEventListener('click', () => addMessage(botAnswer("agricultura sustentável"), true));
+    document.getElementById('qSolar')?.addEventListener('click', () => addMessage(botAnswer("energia solar"), true));
+    document.getElementById('qAgua')?.addEventListener('click', () => addMessage(botAnswer("reduzir água"), true));
+</script>
+</body>
+</html>
