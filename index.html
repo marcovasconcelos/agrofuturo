@@ -7,7 +7,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -20,7 +20,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* ========== CORES PREDOMINANTEMENTE VERDES ========== */
+        /* ========== MODO CLARO (CORRETO - FUNDO CLARO, LETRAS ESCURAS) ========== */
         body.light {
             --bg-primary: #f5f8f0;
             --bg-card: #ffffff;
@@ -35,9 +35,10 @@
             --quiz-bg: #f0f7ed;
             --sim-bg: #f9fcf7;
             --chat-bg: #eef3e9;
-            --tab-active: #2d8c5a;
+            --hero-overlay: rgba(0, 0, 0, 0.5);
         }
 
+        /* ========== MODO ESCURO (CORRETO - FUNDO ESCURO, LETRAS CLARAS) ========== */
         body.dark {
             --bg-primary: #1a2a1f;
             --bg-card: #24332a;
@@ -52,7 +53,7 @@
             --quiz-bg: #25382a;
             --sim-bg: #1f3025;
             --chat-bg: #2c4233;
-            --tab-active: #4abf82;
+            --hero-overlay: rgba(0, 0, 0, 0.6);
         }
 
         body {
@@ -135,7 +136,7 @@
             opacity: 1;
         }
 
-        /* Header com tema toggle */
+        /* Botão tema */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -158,7 +159,7 @@
             transform: scale(1.05);
         }
 
-        /* HERO COM BACKGROUND SLIDESHOW */
+        /* HERO COM SLIDESHOW */
         .hero {
             position: relative;
             color: white;
@@ -196,6 +197,7 @@
             opacity: 1;
         }
 
+        /* Overlay escuro para garantir texto branco legível */
         .slideshow-bg .slide::after {
             content: '';
             position: absolute;
@@ -203,7 +205,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: var(--hero-overlay);
             border-radius: 0 0 40px 40px;
         }
 
@@ -217,6 +219,7 @@
             font-weight: 800;
             animation: floatText 3s ease-in-out infinite;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            color: white;
         }
 
         .hero h1 span {
@@ -225,6 +228,11 @@
             border-radius: 40px;
             display: inline-block;
             margin-top: 10px;
+        }
+
+        .hero p {
+            color: white;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
         }
 
         @keyframes floatText {
@@ -238,7 +246,7 @@
             padding: 0 24px;
         }
 
-        /* ========== SISTEMA DE ABAS ========== */
+        /* Abas */
         .tabs-container {
             background: var(--bg-card);
             border-radius: 60px;
@@ -296,7 +304,25 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ========== ESTILOS DOS CARDS ========== */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            color: var(--text-primary);
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 70%;
+            height: 4px;
+            background: var(--accent);
+            margin-top: 8px;
+            border-radius: 4px;
+        }
+
+        /* Cards */
         .tech-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -356,10 +382,15 @@
             align-items: center;
             gap: 8px;
             transition: transform 0.2s;
+            color: var(--text-primary);
         }
 
         .sustentabilidade-wrapper li:hover {
             transform: translateX(5px);
+        }
+
+        .sustentabilidade-wrapper h3 {
+            color: var(--text-primary);
         }
 
         .simulator-card, .quiz-area, .mapa-pr, .agribot {
@@ -424,6 +455,7 @@
             min-width: 200px;
             border: 1px solid var(--border);
             transition: all 0.3s;
+            color: var(--text-primary);
         }
 
         .info-card:hover {
@@ -433,6 +465,7 @@
 
         .info-card i {
             transition: transform 0.3s;
+            color: var(--accent);
         }
 
         .info-card:hover i {
@@ -448,6 +481,7 @@
             min-width: 150px;
             transition: all 0.3s;
             cursor: pointer;
+            color: var(--text-primary);
         }
 
         .mapa-item:hover {
@@ -463,11 +497,6 @@
             border-radius: 40px 40px 0 0;
             margin-top: 60px;
             color: #cfdfd3;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
         }
 
         @media (max-width: 720px) {
@@ -498,12 +527,12 @@
     </div>
 
     <div class="hero">
-        <!-- Slideshow de imagens de fundo -->
+        <!-- Slideshow de imagens de fundo - URLs alternativas funcionando -->
         <div class="slideshow-bg" id="slideshowBg">
-            <div class="slide active" style="background-image: url('https://i.postimg.cc/PLcgHMqd/close-de-maos-masculinas-segurando-o-solo-e-uma-plantinha-scaled.jpg');"></div>
-            <div class="slide" style="background-image: url('https://i.postimg.cc/zyjrWWG5/360-F-633111346-C0-Y4kwsafj-JTIC3od-EOFO8n-Mckq-YTObf.jpg');"></div>
-            <div class="slide" style="background-image: url('https://i.postimg.cc/nsPNY18q/images.jpg');"></div>
-            <div class="slide" style="background-image: url('https://i.postimg.cc/grWbMNXy/AGRO-1.jpg');"></div>
+            <div class="slide active" style="background-image: url('https://images.pexels.com/photos/164504/pexels-photo-164504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/1431337/pexels-photo-1431337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/154324/pexels-photo-154324.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');"></div>
         </div>
         <h1>AGROFUTURO 2050<br><span>PRODUZIR MAIS, PRESERVAR MELHOR!</span></h1>
         <p style="margin-top:20px; font-size:1.2rem;"><i class="fas fa-microchip"></i> Tecnologia e sustentabilidade transformando o campo.</p>
@@ -605,7 +634,7 @@
         <div class="tab-content" id="tab-agribot">
             <h2 class="section-title"><i class="fas fa-robot"></i> AGRIBOT - Assistente Virtual</h2>
             <div class="agribot">
-                <div id="chatMessages" style="background:var(--chat-bg); border-radius:28px; padding:16px; height:250px; overflow-y:auto; margin:15px 0;">
+                <div id="chatMessages" style="background:var(--chat-bg); border-radius:28px; padding:16px; height:250px; overflow-y:auto; margin:15px 0; color:var(--text-primary);">
                     <div>🤖 Olá! Eu sou o Agribot. Pergunte sobre sustentabilidade, energia solar ou economia de água.</div>
                 </div>
                 <div style="display:flex; gap:12px;">
@@ -624,9 +653,9 @@
         <div class="tab-content" id="tab-info">
             <h2 class="section-title"><i class="fas fa-info-circle"></i> INFORMAÇÕES GERAIS</h2>
             <div class="info-cards">
-                <div class="info-card"><i class="fas fa-tractor fa-3x" style="color:var(--accent);"></i><h3>O AGRO MOVE O BRASIL</h3><p>Agronegócio representa cerca de 25% do PIB nacional.</p></div>
-                <div class="info-card"><i class="fas fa-globe-americas fa-3x" style="color:var(--accent);"></i><h3>ALIMENTA O MUNDO</h3><p>Brasil é um dos maiores produtores de alimentos do planeta.</p></div>
-                <div class="info-card"><i class="fas fa-recycle fa-3x" style="color:var(--accent);"></i><h3>SUSTENTABILIDADE</h3><p>Tecnologia e conhecimento para um futuro melhor para todos.</p></div>
+                <div class="info-card"><i class="fas fa-tractor fa-3x"></i><h3>O AGRO MOVE O BRASIL</h3><p>Agronegócio representa cerca de 25% do PIB nacional.</p></div>
+                <div class="info-card"><i class="fas fa-globe-americas fa-3x"></i><h3>ALIMENTA O MUNDO</h3><p>Brasil é um dos maiores produtores de alimentos do planeta.</p></div>
+                <div class="info-card"><i class="fas fa-recycle fa-3x"></i><h3>SUSTENTABILIDADE</h3><p>Tecnologia e conhecimento para um futuro melhor para todos.</p></div>
             </div>
             <div style="text-align:center; margin-top:40px; padding:24px; background:var(--accent-light); border-radius:32px;">
                 <i class="fas fa-hand-holding-heart fa-2x" style="color:var(--accent);"></i>
@@ -652,13 +681,17 @@
     let currentSlide = 0;
     
     function nextSlide() {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
+        if (slides.length > 0) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
     }
     
     // Troca de imagem a cada 5 segundos
-    setInterval(nextSlide, 5000);
+    if (slides.length > 0) {
+        setInterval(nextSlide, 5000);
+    }
 
     // ========== SISTEMA DE ABAS ==========
     const tabs = document.querySelectorAll('.tab-btn');
@@ -724,9 +757,13 @@
             updateSim();
         });
     });
-    document.querySelectorAll('.btn-option[data-cat="agua"][data-val="consciente"]')[0]?.classList.add('active');
-    document.querySelectorAll('.btn-option[data-cat="energia"][data-val="limpa"]')[0]?.classList.add('active');
-    document.querySelectorAll('.btn-option[data-cat="plantio"][data-val="sustentavel"]')[0]?.classList.add('active');
+    
+    const aguaConsciente = document.querySelector('.btn-option[data-cat="agua"][data-val="consciente"]');
+    const energiaLimpa = document.querySelector('.btn-option[data-cat="energia"][data-val="limpa"]');
+    const plantioSustentavel = document.querySelector('.btn-option[data-cat="plantio"][data-val="sustentavel"]');
+    if(aguaConsciente) aguaConsciente.classList.add('active');
+    if(energiaLimpa) energiaLimpa.classList.add('active');
+    if(plantioSustentavel) plantioSustentavel.classList.add('active');
     updateSim();
 
     // ========== QUIZ ==========
@@ -738,22 +775,31 @@
     let quizIdx = 0;
     function loadQuiz() {
         const qData = quizBank[quizIdx];
-        document.getElementById('quizPergunta').innerHTML = qData.q;
+        const perguntaEl = document.getElementById('quizPergunta');
+        if(perguntaEl) perguntaEl.innerHTML = qData.q;
         const container = document.getElementById('quizOpcoes');
-        container.innerHTML = '';
-        qData.opts.forEach((opt, idx) => {
-            const div = document.createElement('div');
-            div.className = 'quiz-opt';
-            div.innerHTML = `${String.fromCharCode(65+idx)}) ${opt}`;
-            div.onclick = () => {
-                if(idx === qData.correct) document.getElementById('quizFeedback').innerHTML = '<span style="color:#2b7a4b;">✅ Correto! Muito bem!</span>';
-                else document.getElementById('quizFeedback').innerHTML = `<span style="color:#c44536;">❌ Errado! A resposta correta é ${String.fromCharCode(65+qData.correct)}.</span>`;
-            };
-            container.appendChild(div);
-        });
-        document.getElementById('quizFeedback').innerHTML = '';
+        if(container) {
+            container.innerHTML = '';
+            qData.opts.forEach((opt, idx) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-opt';
+                div.innerHTML = `${String.fromCharCode(65+idx)}) ${opt}`;
+                div.onclick = () => {
+                    const feedback = document.getElementById('quizFeedback');
+                    if(idx === qData.correct) {
+                        if(feedback) feedback.innerHTML = '<span style="color:#2b7a4b;">✅ Correto! Muito bem!</span>';
+                    } else {
+                        if(feedback) feedback.innerHTML = `<span style="color:#c44536;">❌ Errado! A resposta correta é ${String.fromCharCode(65+qData.correct)}.</span>`;
+                    }
+                };
+                container.appendChild(div);
+            });
+        }
+        const feedback = document.getElementById('quizFeedback');
+        if(feedback) feedback.innerHTML = '';
     }
-    document.getElementById('nextQuiz')?.addEventListener('click', () => { quizIdx = (quizIdx+1)%quizBank.length; loadQuiz(); });
+    const nextBtn = document.getElementById('nextQuiz');
+    if(nextBtn) nextBtn.addEventListener('click', () => { quizIdx = (quizIdx+1)%quizBank.length; loadQuiz(); });
     loadQuiz();
 
     // ========== CHATBOT ==========
@@ -766,6 +812,7 @@
     }
     const chatDiv = document.getElementById('chatMessages');
     function addMessage(text, isBot) {
+        if(!chatDiv) return;
         const msg = document.createElement('div');
         msg.style.margin = '8px 0';
         msg.style.padding = '8px 14px';
@@ -785,18 +832,25 @@
         chatDiv.appendChild(msg);
         chatDiv.scrollTop = chatDiv.scrollHeight;
     }
-    document.getElementById('sendChat')?.addEventListener('click', () => {
-        let inp = document.getElementById('chatInput');
-        let txt = inp.value.trim();
-        if(!txt) return;
-        addMessage(txt, false);
-        addMessage(botAnswer(txt), true);
-        inp.value = '';
-    });
-    document.getElementById('chatInput')?.addEventListener('keypress', (e) => { if(e.key === 'Enter') document.getElementById('sendChat').click(); });
-    document.getElementById('qSust')?.addEventListener('click', () => addMessage(botAnswer("agricultura sustentável"), true));
-    document.getElementById('qSolar')?.addEventListener('click', () => addMessage(botAnswer("energia solar"), true));
-    document.getElementById('qAgua')?.addEventListener('click', () => addMessage(botAnswer("reduzir água"), true));
+    const sendBtn = document.getElementById('sendChat');
+    const chatInput = document.getElementById('chatInput');
+    if(sendBtn && chatInput) {
+        sendBtn.addEventListener('click', () => {
+            let txt = chatInput.value.trim();
+            if(!txt) return;
+            addMessage(txt, false);
+            addMessage(botAnswer(txt), true);
+            chatInput.value = '';
+        });
+        chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendBtn.click(); });
+    }
+    
+    const qSust = document.getElementById('qSust');
+    const qSolar = document.getElementById('qSolar');
+    const qAgua = document.getElementById('qAgua');
+    if(qSust) qSust.addEventListener('click', () => addMessage(botAnswer("agricultura sustentável"), true));
+    if(qSolar) qSolar.addEventListener('click', () => addMessage(botAnswer("energia solar"), true));
+    if(qAgua) qAgua.addEventListener('click', () => addMessage(botAnswer("reduzir água"), true));
 </script>
 </body>
 </html>
