@@ -20,7 +20,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* ========== TEMAS ========== */
+        /* ========== CORES ORIGINAIS (que você aprovou) ========== */
         body.light {
             --bg-primary: #f5f8f0;
             --bg-card: #ffffff;
@@ -35,23 +35,38 @@
             --chat-bg: #eef3e9;
         }
 
+        /* MODO ESCURO CORRIGIDO: textos agora são claros */
         body.dark {
-            --bg-primary: #121812;
-            --bg-card: #1e2a22;
-            --text-primary: #e8f0e5;
-            --text-secondary: #b8cfb0;
-            --header-bg: linear-gradient(135deg, #063824 0%, #0a4d32 100%);
-            --footer-bg: #0a1f16;
+            --bg-primary: #1a2a1f;
+            --bg-card: #24332a;
+            --text-primary: #f0f7ea;
+            --text-secondary: #cbe5c1;
+            --header-bg: linear-gradient(135deg, #0a3d2c 0%, #145c3e 100%);
+            --footer-bg: #0e241c;
             --accent: #f4b942;
-            --border: #2d4638;
-            --quiz-bg: #1f2a1f;
-            --sim-bg: #1e2a1e;
-            --chat-bg: #2a3a2a;
+            --border: #3a5a48;
+            --quiz-bg: #25382a;
+            --sim-bg: #1f3025;
+            --chat-bg: #2c4233;
         }
 
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
+        }
+
+        /* Melhora contraste no modo escuro para inputs e textos específicos */
+        body.dark input, body.dark .quiz-opt, body.dark .btn-option {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            border-color: var(--border);
+        }
+        body.dark .quiz-opt:hover {
+            background-color: var(--accent);
+            color: #1e3b2c;
+        }
+        body.dark .tech-card p, body.dark .sustentabilidade-wrapper li {
+            color: var(--text-secondary);
         }
 
         /* ========== TELA DE BOAS-VINDAS ========== */
@@ -143,21 +158,27 @@
             gap: 8px;
             font-weight: 600;
             border: 1px solid var(--accent);
+            color: var(--text-primary);
         }
 
+        /* HERO COM IMAGEM DE FUNDO */
         .hero {
-            background: var(--header-bg);
+            background: linear-gradient(rgba(14, 79, 58, 0.75), rgba(28, 110, 74, 0.8)), url('https://i.postimg.cc/PLcgHMqd/close-de-maos-masculinas-segurando-o-solo-e-uma-plantinha-scaled.jpg');
+            background-size: cover;
+            background-position: center 30%;
             color: white;
             border-radius: 0 0 40px 40px;
             margin-bottom: 40px;
-            padding: 60px 20px 70px;
+            padding: 80px 20px 90px;
             text-align: center;
+            position: relative;
         }
 
         .hero h1 {
             font-size: 3rem;
             font-weight: 800;
             animation: floatText 3s ease-in-out infinite;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
         }
 
         @keyframes floatText {
@@ -181,6 +202,7 @@
             margin-bottom: 40px;
             position: relative;
             display: inline-block;
+            color: var(--text-primary);
         }
         .section-title:after {
             content: '';
@@ -205,7 +227,7 @@
             text-align: center;
             transition: all 0.3s;
             border: 1px solid var(--border);
-            animation: cardGlow 0.6s ease-out;
+            color: var(--text-primary);
         }
 
         .tech-card:hover {
@@ -213,9 +235,8 @@
             box-shadow: 0 20px 30px rgba(0,0,0,0.2);
         }
 
-        @keyframes cardGlow {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .tech-card i {
+            color: var(--accent);
         }
 
         .sustentabilidade-wrapper {
@@ -225,6 +246,7 @@
             background: var(--bg-card);
             border-radius: 48px;
             padding: 40px 32px;
+            border: 1px solid var(--border);
         }
 
         .simulator-card, .quiz-area, .mapa-pr, .agribot {
@@ -243,6 +265,7 @@
             cursor: pointer;
             font-weight: 600;
             transition: 0.1s;
+            color: var(--text-primary);
         }
 
         .btn-option.active {
@@ -257,6 +280,7 @@
             border-radius: 60px;
             cursor: pointer;
             transition: 0.1s;
+            color: var(--text-primary);
         }
 
         .quiz-opt:hover {
@@ -270,11 +294,13 @@
             text-align: center;
             border-radius: 40px 40px 0 0;
             margin-top: 60px;
+            color: #cfdfd3;
         }
 
         @media (max-width: 720px) {
             .hero h1 { font-size: 2rem; }
             .splash-content h1 { font-size: 2.5rem; }
+            .hero { padding: 60px 20px; }
         }
     </style>
 </head>
@@ -297,8 +323,8 @@
     </div>
 
     <div class="hero">
-        <h1>AGROFUTURO 2050<br><span style="background:#f4b942; padding:0 12px; border-radius:40px;">PRODUZIR MAIS, PRESERVAR MELHOR!</span></h1>
-        <p><i class="fas fa-microchip"></i> Tecnologia e sustentabilidade transformando o campo.</p>
+        <h1>AGROFUTURO 2050<br><span style="background:#f4b942; padding:0 12px; border-radius:40px; display:inline-block; margin-top:10px;">PRODUZIR MAIS, PRESERVAR MELHOR!</span></h1>
+        <p style="margin-top:20px; font-size:1.2rem;"><i class="fas fa-microchip"></i> Tecnologia e sustentabilidade transformando o campo.</p>
     </div>
 
     <div class="container">
@@ -306,12 +332,12 @@
         <section>
             <h2 class="section-title"><i class="fas fa-microchip"></i> TECNOLOGIAS DO FUTURO</h2>
             <div class="tech-grid">
-                <div class="tech-card"><i class="fas fa-drone fa-3x" style="color:var(--accent);"></i><h3>DRONE AGRÍCOLA</h3><p>Monitora plantações rapidamente.</p></div>
-                <div class="tech-card"><i class="fas fa-water fa-3x" style="color:var(--accent);"></i><h3>IRRIGAÇÃO INTELIGENTE</h3><p>Economiza água e aumenta produtividade.</p></div>
-                <div class="tech-card"><i class="fas fa-solar-panel fa-3x" style="color:var(--accent);"></i><h3>ENERGIA SOLAR</h3><p>Energia limpa para propriedades rurais.</p></div>
-                <div class="tech-card"><i class="fas fa-chart-line fa-3x" style="color:var(--accent);"></i><h3>SENSORES DE SOLO</h3><p>Analisam nutrientes e umidade em tempo real.</p></div>
-                <div class="tech-card"><i class="fas fa-tractor fa-3x" style="color:var(--accent);"></i><h3>TRATORES AUTÔNOMOS</h3><p>Tarefas com precisão máxima.</p></div>
-                <div class="tech-card"><i class="fas fa-dna fa-3x" style="color:var(--accent);"></i><h3>BIOTECNOLOGIA</h3><p>Sementes mais resistentes e produtivas.</p></div>
+                <div class="tech-card"><i class="fas fa-drone fa-3x"></i><h3>DRONE AGRÍCOLA</h3><p>Monitora plantações rapidamente.</p></div>
+                <div class="tech-card"><i class="fas fa-water fa-3x"></i><h3>IRRIGAÇÃO INTELIGENTE</h3><p>Economiza água e aumenta produtividade.</p></div>
+                <div class="tech-card"><i class="fas fa-solar-panel fa-3x"></i><h3>ENERGIA SOLAR</h3><p>Energia limpa para propriedades rurais.</p></div>
+                <div class="tech-card"><i class="fas fa-chart-line fa-3x"></i><h3>SENSORES DE SOLO</h3><p>Analisam nutrientes e umidade em tempo real.</p></div>
+                <div class="tech-card"><i class="fas fa-tractor fa-3x"></i><h3>TRATORES AUTÔNOMOS</h3><p>Tarefas com precisão máxima.</p></div>
+                <div class="tech-card"><i class="fas fa-dna fa-3x"></i><h3>BIOTECNOLOGIA</h3><p>Sementes mais resistentes e produtivas.</p></div>
             </div>
         </section>
 
@@ -372,7 +398,7 @@
                     <div>🤖 Olá! Pergunte sobre sustentabilidade, energia solar ou economia de água.</div>
                 </div>
                 <div style="display:flex; gap:12px;">
-                    <input type="text" id="chatInput" placeholder="Digite sua pergunta..." style="flex:1; padding:12px; border-radius:40px; border:1px solid var(--border); background:var(--bg-primary);">
+                    <input type="text" id="chatInput" placeholder="Digite sua pergunta..." style="flex:1; padding:12px; border-radius:40px; border:1px solid var(--border); background:var(--bg-primary); color:var(--text-primary);">
                     <button id="sendChat" style="background:var(--accent); border:none; padding:0 20px; border-radius:40px; font-weight:bold;">Enviar</button>
                 </div>
                 <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:15px;">
@@ -396,7 +422,6 @@
         splash.style.opacity = '0';
         splash.style.visibility = 'hidden';
         mainSite.classList.add('show');
-        // Iniciar animações
     });
 
     // TEMA ESCURO/CLARO
