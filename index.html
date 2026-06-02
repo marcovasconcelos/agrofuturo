@@ -191,7 +191,7 @@
         }
 
         .tab i {
-            margin-right: 6px;
+            margin-right: 8px;
         }
 
         .tab:hover {
@@ -224,6 +224,11 @@
             color: var(--text);
             border-left: 5px solid var(--green);
             padding-left: 15px;
+        }
+
+        h2 i {
+            margin-right: 10px;
+            color: var(--green);
         }
 
         /* CARDS */
@@ -297,6 +302,11 @@
             border-radius: 40px;
         }
 
+        .simulador h3 i {
+            margin-right: 8px;
+            color: var(--green);
+        }
+
         .options {
             display: flex;
             flex-wrap: wrap;
@@ -307,6 +317,13 @@
         .opt-group {
             flex: 1;
             min-width: 160px;
+        }
+
+        .opt-group h4 {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .opt-btn {
@@ -395,6 +412,10 @@
             color: white;
         }
 
+        .mapa-item i {
+            margin-bottom: 8px;
+        }
+
         /* CHAT */
         .chat-area {
             background: var(--bg);
@@ -449,6 +470,12 @@
             border-radius: 40px;
             cursor: pointer;
             font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .quick-btn:hover {
+            background: var(--green-light);
+            transform: translateY(-2px);
         }
 
         /* RODAPÉ */
@@ -547,17 +574,29 @@
         <div id="simulador" class="tab-content">
             <h2><i class="fas fa-chart-simple"></i> SIMULADOR DA FAZENDA</h2>
             <div class="simulador">
-                <p><strong>Você consegue administrar uma fazenda sustentável?</strong></p>
+                <p style="margin-bottom: 15px;"><strong>🌾 Você consegue administrar uma fazenda sustentável?</strong></p>
                 <div class="options">
-                    <div class="opt-group"><h4>💧 ÁGUA</h4><button class="opt-btn" onclick="simular('agua','consciente', this)">Uso consciente</button><button class="opt-btn" onclick="simular('agua','excessivo', this)">Uso excessivo</button></div>
-                    <div class="opt-group"><h4>⚡ ENERGIA</h4><button class="opt-btn" onclick="simular('energia','limpa', this)">Energia limpa</button><button class="opt-btn" onclick="simular('energia','fossil', this)">Combustível fóssil</button></div>
-                    <div class="opt-group"><h4>🌱 PLANTIO</h4><button class="opt-btn" onclick="simular('plantio','sustentavel', this)">Sustentável</button><button class="opt-btn" onclick="simular('plantio','convencional', this)">Convencional</button></div>
+                    <div class="opt-group">
+                        <h4><i class="fas fa-tint"></i> ÁGUA</h4>
+                        <button class="opt-btn" onclick="simular('agua','consciente', this)"><i class="fas fa-check-circle"></i> Uso consciente</button>
+                        <button class="opt-btn" onclick="simular('agua','excessivo', this)"><i class="fas fa-exclamation-triangle"></i> Uso excessivo</button>
+                    </div>
+                    <div class="opt-group">
+                        <h4><i class="fas fa-bolt"></i> ENERGIA</h4>
+                        <button class="opt-btn" onclick="simular('energia','limpa', this)"><i class="fas fa-solar-panel"></i> Energia limpa</button>
+                        <button class="opt-btn" onclick="simular('energia','fossil', this)"><i class="fas fa-oil-can"></i> Combustível fóssil</button>
+                    </div>
+                    <div class="opt-group">
+                        <h4><i class="fas fa-seedling"></i> PLANTIO</h4>
+                        <button class="opt-btn" onclick="simular('plantio','sustentavel', this)"><i class="fas fa-leaf"></i> Sustentável</button>
+                        <button class="opt-btn" onclick="simular('plantio','convencional', this)"><i class="fas fa-tractor"></i> Convencional</button>
+                    </div>
                 </div>
                 <div class="resultados" id="resultados">
-                    <div>💰 Lucro: <strong id="lucro">R$ 125.000</strong></div>
-                    <div>🌍 Impacto: <strong id="impacto">Baixo</strong></div>
-                    <div>💧 Consumo de Água: <strong id="agua">45%</strong></div>
-                    <div>⭐ Pontuação: <strong id="estrelas">★★★★★</strong></div>
+                    <div><i class="fas fa-dollar-sign"></i> 💰 Lucro: <strong id="lucro">R$ 125.000</strong></div>
+                    <div><i class="fas fa-globe-americas"></i> 🌍 Impacto: <strong id="impacto">Baixo</strong></div>
+                    <div><i class="fas fa-tint"></i> 💧 Consumo de Água: <strong id="agua">45%</strong></div>
+                    <div><i class="fas fa-star"></i> ⭐ Pontuação: <strong id="estrelas">★★★★★</strong></div>
                 </div>
             </div>
         </div>
@@ -578,9 +617,9 @@
         <div id="quiz" class="tab-content">
             <h2><i class="fas fa-question-circle"></i> QUIZ INTERATIVO</h2>
             <div class="simulador">
-                <div id="pergunta" style="font-size: 1.3rem; font-weight: bold;">Qual tecnologia ajuda a economizar água?</div>
+                <div id="pergunta" style="font-size: 1.3rem; font-weight: bold;"><i class="fas fa-brain"></i> Qual tecnologia ajuda a economizar água?</div>
                 <div class="quiz-opts" id="quizOptions"></div>
-                <button class="opt-btn" onclick="proximaPergunta()">Próxima Pergunta →</button>
+                <button class="opt-btn" onclick="proximaPergunta()"><i class="fas fa-arrow-right"></i> Próxima Pergunta →</button>
                 <div id="quizFeedback" style="margin-top: 15px;"></div>
             </div>
         </div>
@@ -590,16 +629,16 @@
             <h2><i class="fas fa-robot"></i> AGRIBOT - Assistente Virtual</h2>
             <div class="simulador">
                 <div class="chat-area" id="chatArea">
-                    <div>🤖 Olá! Eu sou o Agribot. Pergunte sobre sustentabilidade, energia solar ou economia de água.</div>
+                    <div><i class="fas fa-robot"></i> 🤖 Olá! Eu sou o Agribot. Pergunte sobre sustentabilidade, energia solar ou economia de água.</div>
                 </div>
                 <div class="chat-input">
                     <input type="text" id="chatInput" placeholder="Digite sua pergunta...">
-                    <button onclick="enviarMensagem()">Enviar</button>
+                    <button onclick="enviarMensagem()"><i class="fas fa-paper-plane"></i> Enviar</button>
                 </div>
                 <div class="quick-buttons">
-                    <button class="quick-btn" onclick="perguntaRapida('agricultura sustentável')">🌿 Agricultura sustentável</button>
-                    <button class="quick-btn" onclick="perguntaRapida('energia solar')">☀️ Benefícios da energia solar</button>
-                    <button class="quick-btn" onclick="perguntaRapida('água')">💧 Reduzir uso de água</button>
+                    <button class="quick-btn" onclick="perguntaRapida('agricultura sustentável')"><i class="fas fa-leaf"></i> 🌿 Agricultura sustentável</button>
+                    <button class="quick-btn" onclick="perguntaRapida('energia solar')"><i class="fas fa-solar-panel"></i> ☀️ Benefícios da energia solar</button>
+                    <button class="quick-btn" onclick="perguntaRapida('água')"><i class="fas fa-tint"></i> 💧 Reduzir uso de água</button>
                 </div>
             </div>
         </div>
@@ -621,7 +660,7 @@
 
     <footer>
         <p>© 2024 AgroFuturo 2050 - Todos os direitos reservados</p>
-        <p style="margin-top: 8px;">🌍 Produzir mais, preservar melhor! 🌱</p>
+        <p style="margin-top: 8px;"><i class="fas fa-leaf"></i> Produzir mais, preservar melhor! 🌱</p>
     </footer>
 </div>
 
@@ -649,15 +688,12 @@
 
     // SISTEMA DE ABAS
     function mudarTab(tabId, element) {
-        // Esconde todos os conteúdos
         document.querySelectorAll('.tab-content').forEach(tab => {
             tab.classList.remove('active');
         });
-        // Remove active de todas as abas
         document.querySelectorAll('.tab').forEach(tab => {
             tab.classList.remove('active');
         });
-        // Mostra a aba selecionada
         document.getElementById(tabId).classList.add('active');
         element.classList.add('active');
     }
@@ -668,12 +704,10 @@
     function simular(cat, val, btn) {
         simState[cat] = val;
         
-        // Atualiza UI dos botões
         const parent = btn.parentElement;
         parent.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         
-        // Cálculos
         let lucro = 100000;
         let impacto = "Médio";
         let agua = 70;
@@ -723,15 +757,15 @@
 
     // QUIZ
     const perguntas = [
-        { texto: "Qual tecnologia ajuda a economizar água na plantação?", opts: ["Drone Agrícola", "Irrigação Inteligente", "Trator Autônomo", "Energia Solar"], correta: 1 },
-        { texto: "Qual prática NÃO é sustentável?", opts: ["Rotação de culturas", "Uso de bioinsumos", "Desmatamento", "Irrigação por gotejamento"], correta: 2 },
-        { texto: "Qual energia renovável é ideal para o campo?", opts: ["Energia Solar", "Carvão Mineral", "Diesel", "Gás Natural"], correta: 0 }
+        { texto: "❓ Qual tecnologia ajuda a economizar água na plantação?", opts: ["Drone Agrícola", "Irrigação Inteligente", "Trator Autônomo", "Energia Solar"], correta: 1 },
+        { texto: "❓ Qual prática NÃO é sustentável?", opts: ["Rotação de culturas", "Uso de bioinsumos", "Desmatamento", "Irrigação por gotejamento"], correta: 2 },
+        { texto: "❓ Qual energia renovável é ideal para o campo?", opts: ["Energia Solar", "Carvão Mineral", "Diesel", "Gás Natural"], correta: 0 }
     ];
     let perguntaAtual = 0;
 
     function carregarQuiz() {
         const q = perguntas[perguntaAtual];
-        document.getElementById('pergunta').innerHTML = q.texto;
+        document.getElementById('pergunta').innerHTML = `<i class="fas fa-brain"></i> ${q.texto}`;
         const container = document.getElementById('quizOptions');
         container.innerHTML = '';
         
@@ -741,9 +775,9 @@
             btn.innerHTML = `${String.fromCharCode(65 + idx)}) ${opt}`;
             btn.onclick = () => {
                 if (idx === q.correta) {
-                    document.getElementById('quizFeedback').innerHTML = '<span style="color: #2d8c5a;">✅ Correto! Muito bem!</span>';
+                    document.getElementById('quizFeedback').innerHTML = '<span style="color: #2d8c5a;"><i class="fas fa-check-circle"></i> ✅ Correto! Muito bem!</span>';
                 } else {
-                    document.getElementById('quizFeedback').innerHTML = `<span style="color: #c44536;">❌ Errado! A resposta correta é ${String.fromCharCode(65 + q.correta)}.</span>`;
+                    document.getElementById('quizFeedback').innerHTML = `<span style="color: #c44536;"><i class="fas fa-times-circle"></i> ❌ Errado! A resposta correta é ${String.fromCharCode(65 + q.correta)}.</span>`;
                 }
             };
             container.appendChild(btn);
@@ -777,23 +811,22 @@
         if (!texto) return;
         
         const chat = document.getElementById('chatArea');
-        chat.innerHTML += `<div style="margin: 8px 0; text-align: right;"><strong>👤 Você:</strong> ${texto}</div>`;
-        chat.innerHTML += `<div style="margin: 8px 0; text-align: left; color: var(--green);"><strong>🤖 Agribot:</strong> ${responderBot(texto)}</div>`;
+        chat.innerHTML += `<div style="margin: 8px 0; text-align: right;"><strong><i class="fas fa-user"></i> 👤 Você:</strong> ${texto}</div>`;
+        chat.innerHTML += `<div style="margin: 8px 0; text-align: left; color: var(--green);"><strong><i class="fas fa-robot"></i> 🤖 Agribot:</strong> ${responderBot(texto)}</div>`;
         chat.scrollTop = chat.scrollHeight;
         input.value = '';
     }
 
     function perguntaRapida(texto) {
         const chat = document.getElementById('chatArea');
-        chat.innerHTML += `<div style="margin: 8px 0; text-align: right;"><strong>👤 Você:</strong> ${texto}</div>`;
-        chat.innerHTML += `<div style="margin: 8px 0; text-align: left; color: var(--green);"><strong>🤖 Agribot:</strong> ${responderBot(texto)}</div>`;
+        chat.innerHTML += `<div style="margin: 8px 0; text-align: right;"><strong><i class="fas fa-user"></i> 👤 Você:</strong> ${texto}</div>`;
+        chat.innerHTML += `<div style="margin: 8px 0; text-align: left; color: var(--green);"><strong><i class="fas fa-robot"></i> 🤖 Agribot:</strong> ${responderBot(texto)}</div>`;
         chat.scrollTop = chat.scrollHeight;
     }
 
     // Inicialização
     carregarQuiz();
     
-    // Inicializa simulador com valores padrão
     setTimeout(() => {
         const btnsAgua = document.querySelectorAll('.opt-group:first-child .opt-btn');
         const btnsEnergia = document.querySelectorAll('.opt-group:nth-child(2) .opt-btn');
