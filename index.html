@@ -7,7 +7,7 @@
     <title>🌱 AgroFuturo 2050 | Tecnologia e Sustentabilidade</title>
     <style>
         /* ================================================
-           VARIÁVEIS GLOBAIS E TEMAS
+           VARIÁVEIS GLOBAIS E TEMAS - CORES CORRIGIDAS
            ================================================ */
         * {
             margin: 0;
@@ -25,22 +25,24 @@
             flex-direction: column;
         }
 
-        /* MODO CLARO (PADRÃO) */
+        /* MODO CLARO - CORES FORTES E COM BOM CONTRASTE */
         body.light {
-            --bg: #f0f7ea;
+            --bg: #e8f3e3;
             --card: #ffffff;
-            --text: #1e2f2c;
-            --text-light: #3f5a51;
+            --text: #1a3a2c;
+            --text-light: #2d5a45;
             --green: #2d8c5a;
             --green-dark: #1e6e46;
-            --green-light: #e8f5ed;
-            --gold: #f4b942;
-            --header-overlay: rgba(0,0,0,0.5);
-            --border: #d4e8d0;
-            --shadow: rgba(0,0,0,0.1);
+            --green-light: #c8e6d4;
+            --gold: #e6a017;
+            --header-overlay: rgba(0, 0, 0, 0.45);
+            --border: #b8d9ac;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --button-bg: #f0f7ea;
+            --input-bg: #ffffff;
         }
 
-        /* MODO ESCURO - CORRIGIDO */
+        /* MODO ESCURO - CORES LEGÍVEIS */
         body.dark {
             --bg: #1a2a1f;
             --card: #24332a;
@@ -50,35 +52,16 @@
             --green-dark: #3aa86e;
             --green-light: #2a4635;
             --gold: #f4b942;
-            --header-overlay: rgba(0,0,0,0.6);
+            --header-overlay: rgba(0, 0, 0, 0.6);
             --border: #3a5a48;
-            --shadow: rgba(0,0,0,0.3);
+            --shadow: rgba(0, 0, 0, 0.3);
+            --button-bg: #1a2a1f;
+            --input-bg: #24332a;
         }
 
         body {
             background: var(--bg);
             color: var(--text);
-        }
-
-        /* Garantia de cores no modo escuro para TODOS os elementos */
-        body.dark .quiz-opt,
-        body.dark .quick-btn,
-        body.dark .chat-area,
-        body.dark .chat-input input,
-        body.dark .chat-input input::placeholder,
-        body.dark .opt-btn,
-        body.dark .resultado-card,
-        body.dark .mapa-item,
-        body.dark .card,
-        body.dark .sust-item li,
-        body.dark .sust-item h3,
-        body.dark .simulador-titulo {
-            color: var(--text);
-        }
-
-        body.dark .chat-input input {
-            background: var(--card);
-            border-color: var(--green);
         }
 
         /* ===== 5 FONTES ===== */
@@ -130,7 +113,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.55);
         }
 
         .splash-content {
@@ -150,14 +133,15 @@
             font-size: clamp(2rem, 8vw, 4rem);
             color: white;
             margin-bottom: 15px;
-            text-shadow: 3px 3px 0 #2d8c5a;
+            text-shadow: 3px 3px 0 #1e6e46;
             animation: pulse 2s infinite;
         }
 
         .splash-content p {
-            color: #e8ffe0;
+            color: #ffffff;
             font-size: clamp(1rem, 4vw, 1.3rem);
             margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .splash-content button {
@@ -181,8 +165,8 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); text-shadow: 3px 3px 0 #2d8c5a; }
-            50% { transform: scale(1.02); text-shadow: 5px 5px 0 #2d8c5a; }
+            0%, 100% { transform: scale(1); text-shadow: 3px 3px 0 #1e6e46; }
+            50% { transform: scale(1.02); text-shadow: 5px 5px 0 #1e6e46; }
         }
 
         /* ================================================
@@ -202,7 +186,7 @@
             z-index: 99;
             box-shadow: 0 2px 10px var(--shadow);
             font-weight: bold;
-            border: 1px solid var(--green);
+            border: 2px solid var(--green);
             transition: transform 0.2s;
             color: var(--text);
         }
@@ -220,7 +204,7 @@
             padding: 15px;
             z-index: 100;
             box-shadow: 0 5px 25px var(--shadow);
-            border: 1px solid var(--green);
+            border: 2px solid var(--green);
             width: 250px;
             display: none;
             animation: slideIn 0.3s ease;
@@ -243,7 +227,7 @@
             padding: 8px;
             border-radius: 30px;
             border: 1px solid var(--green);
-            background: var(--bg);
+            background: var(--button-bg);
             color: var(--text);
             cursor: pointer;
             transition: all 0.2s;
@@ -302,6 +286,7 @@
             margin-bottom: 15px;
             animation: floatText 3s ease-in-out infinite;
             color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         @keyframes floatText {
             0%, 100% { transform: translateY(0); }
@@ -316,7 +301,7 @@
             font-size: clamp(0.9rem, 3.5vw, 1.3rem);
             color: white;
         }
-        .hero p { color: white; font-size: clamp(0.9rem, 3.5vw, 1.2rem); }
+        .hero p { color: white; font-size: clamp(0.9rem, 3.5vw, 1.2rem); text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; flex: 1; }
 
@@ -343,6 +328,7 @@
             padding: 10px;
             border-radius: 60px;
             box-shadow: 0 2px 8px var(--shadow);
+            border: 1px solid var(--border);
         }
         .tabs.mobile-hidden { display: none; }
         .tabs.mobile-show {
@@ -396,10 +382,12 @@
             border-radius: 25px;
             text-align: center;
             transition: all 0.3s;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
         }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px var(--shadow); }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px var(--shadow); border-color: var(--green); }
         .card .icon { font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 12px; display: inline-block; }
+        .card h3 { color: var(--text); margin-bottom: 8px; }
+        .card p { color: var(--text-light); }
 
         /* SUSTENTABILIDADE */
         .sustentabilidade {
@@ -409,9 +397,10 @@
             background: var(--card);
             padding: 25px;
             border-radius: 30px;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
         }
         .sust-item { flex: 1; min-width: 200px; }
+        .sust-item h3 { color: var(--text); margin-bottom: 12px; }
         .sust-item ul { list-style: none; margin-top: 10px; }
         .sust-item li { margin: 10px 0; display: flex; align-items: center; gap: 8px; color: var(--text); }
 
@@ -420,7 +409,7 @@
             background: var(--card);
             padding: 25px;
             border-radius: 30px;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
         }
         .simulador-titulo {
             text-align: center;
@@ -429,7 +418,8 @@
             padding: 10px;
             background: var(--green-light);
             border-radius: 50px;
-            color: var(--green);
+            color: var(--green-dark);
+            font-weight: bold;
         }
         .options {
             display: flex;
@@ -440,9 +430,10 @@
         .opt-group {
             flex: 1;
             min-width: 140px;
-            background: var(--bg);
+            background: var(--button-bg);
             padding: 15px;
             border-radius: 20px;
+            border: 1px solid var(--border);
         }
         .opt-group h4 { margin-bottom: 10px; color: var(--text); text-align: center; }
         .opt-btn {
@@ -454,6 +445,7 @@
             cursor: pointer;
             transition: all 0.2s;
             color: var(--text);
+            font-weight: 500;
         }
         .opt-btn:hover { transform: translateY(-2px); background: var(--green-light); }
         .opt-btn.active { background: var(--green); color: white; border-color: var(--green-dark); }
@@ -461,7 +453,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
-            background: linear-gradient(135deg, var(--green-light), var(--bg));
+            background: var(--green-light);
             padding: 20px;
             border-radius: 25px;
             margin-top: 20px;
@@ -472,6 +464,7 @@
             padding: 15px;
             border-radius: 20px;
             transition: transform 0.3s;
+            border: 1px solid var(--border);
         }
         .resultado-card:hover { transform: translateY(-5px); }
         .resultado-icon { font-size: 2rem; margin-bottom: 8px; }
@@ -481,7 +474,7 @@
         /* QUIZ */
         .quiz-opts { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
         .quiz-opt {
-            background: var(--bg);
+            background: var(--button-bg);
             padding: 10px 18px;
             border-radius: 40px;
             cursor: pointer;
@@ -513,12 +506,11 @@
             transition: all 0.3s;
             cursor: pointer;
             color: var(--text);
+            border: 1px solid var(--border);
         }
         .mapa-item:hover { transform: translateY(-5px); background: var(--green); color: white; }
 
-        /* ================================================
-           AGRIBOT TURBINADO E DECORADO
-           ================================================ */
+        /* AGRIBOT */
         .agribot-header {
             display: flex;
             align-items: center;
@@ -535,35 +527,38 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
         }
-        .agribot-header h3 { font-size: 1.3rem; }
+        .agribot-header h3 { font-size: 1.3rem; color: white; }
         
         .chat-area {
-            background: var(--bg);
+            background: var(--button-bg);
             padding: 15px;
             border-radius: 25px;
-            height: 250px;
+            height: 280px;
             overflow-y: auto;
             margin: 15px 0;
             color: var(--text);
+            border: 1px solid var(--border);
         }
         .chat-message-bot {
             background: var(--green-light);
             padding: 10px 15px;
             border-radius: 20px;
             margin: 8px 0;
-            max-width: 85%;
+            max-width: 90%;
             display: inline-block;
             border-left: 4px solid var(--green);
+            color: var(--text);
         }
         .chat-message-user {
             background: var(--card);
             padding: 10px 15px;
             border-radius: 20px;
             margin: 8px 0;
-            max-width: 85%;
+            max-width: 90%;
             display: inline-block;
             float: right;
             border-right: 4px solid var(--gold);
+            color: var(--text);
         }
         .chat-input {
             display: flex;
@@ -575,8 +570,8 @@
             flex: 1;
             padding: 12px;
             border-radius: 40px;
-            border: 1px solid var(--green);
-            background: var(--card);
+            border: 2px solid var(--green);
+            background: var(--input-bg);
             color: var(--text);
         }
         .chat-input input::placeholder { color: var(--text-light); }
@@ -600,14 +595,15 @@
             justify-content: center;
         }
         .quick-btn {
-            background: var(--bg);
-            border: 1px solid var(--green);
+            background: var(--button-bg);
+            border: 2px solid var(--green);
             padding: 8px 15px;
             border-radius: 40px;
             cursor: pointer;
             font-size: 0.85rem;
             transition: all 0.2s;
             color: var(--text);
+            font-weight: 500;
         }
         .quick-btn:hover { background: var(--green); color: white; transform: translateY(-2px); }
         
@@ -626,6 +622,19 @@
             margin-top: 50px;
             border-radius: 30px 30px 0 0;
         }
+        footer p { color: white; }
+
+        .easter-egg {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 999;
+        }
+        .easter-egg:hover { opacity: 0.2; }
 
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
@@ -634,24 +643,12 @@
             .resultados { grid-template-columns: 1fr; }
             .sugestoes-grid { grid-template-columns: 1fr; }
         }
-        
-        .easter-egg {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            width: 30px;
-            height: 30px;
-            opacity: 0;
-            cursor: pointer;
-            z-index: 999;
-        }
-        .easter-egg:hover { opacity: 0.3; }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="light font-default">
 
-<div class="easter-egg" id="easterEgg" onclick="ativarEasterEgg()"></div>
+<div class="easter-egg" id="easterEgg" onclick="ativarEasterEgg()">🥚</div>
 
 <!-- SPLASH -->
 <div class="splash" id="splash">
@@ -781,7 +778,7 @@
         <div id="quiz" class="tab-content">
             <h2>❓ QUIZ DESAFIO AGROFUTURO</h2>
             <div class="simulador">
-                <div id="pergunta" style="font-size: clamp(1rem,4vw,1.2rem); font-weight:bold; margin-bottom:15px;">🧠 Qual tecnologia ajuda a economizar água?</div>
+                <div id="pergunta" style="font-size: clamp(1rem,4vw,1.2rem); font-weight:bold; margin-bottom:15px; color:var(--text);">🧠 Qual tecnologia ajuda a economizar água?</div>
                 <div class="quiz-opts" id="quizOptions"></div>
                 <button class="opt-btn" onclick="proximaPergunta()" id="nextQuizBtn">➡️ Próxima Pergunta</button>
                 <div id="quizFeedback" style="margin-top:15px;"></div>
@@ -796,7 +793,7 @@
             </div>
         </div>
 
-        <!-- AGRIBOT TURBINADO -->
+        <!-- AGRIBOT -->
         <div id="agribot" class="tab-content">
             <h2>🤖 AGRIBOT - SEU PROFESSOR VIRTUAL</h2>
             <div class="simulador">
@@ -808,13 +805,13 @@
                 
                 <div class="chat-area" id="chatArea">
                     <div class="chat-message-bot">
-                        🤖 Olá! Eu sou o Agribot, seu assistente de estudos!<br>
+                        🤖 Olá! Eu sou o Agribot, seu assistente de estudos!<br><br>
                         📖 Posso te ajudar com:<br>
                         • ✅ Perguntas do QUIZ (estude para a prova!)<br>
                         • 📊 Dicas do SIMULADOR (como melhorar sua fazenda)<br>
                         • 🌍 Informações sobre sustentabilidade<br>
                         • 💡 Tecnologias do futuro<br><br>
-                        Pergunte: "Me ensine sobre o quiz" ou "Dica para o simulador"!
+                        <strong>Pergunte:</strong> "Me ensine sobre o quiz" ou "Dica para o simulador"!
                     </div>
                 </div>
                 
@@ -829,7 +826,6 @@
                     <button class="quick-btn" onclick="perguntaRapida('O que é agricultura sustentável?')">🌿 Agricultura Sustentável</button>
                     <button class="quick-btn" onclick="perguntaRapida('Benefícios da energia solar')">☀️ Energia Solar</button>
                     <button class="quick-btn" onclick="perguntaRapida('Como economizar água na lavoura?')">💧 Economizar Água</button>
-                    <button class="quick-btn" onclick="perguntaRapida('Tecnologias do futuro')">🔬 Tecnologias</button>
                 </div>
                 
                 <div class="sugestoes-grid">
@@ -852,7 +848,7 @@
             </div>
             <div style="text-align:center; margin-top:30px; padding:20px; background:var(--green-light); border-radius:30px;">
                 <div style="font-size:2rem;">🤝</div>
-                <p><strong>JUNTOS PELO FUTURO</strong><br>Pequenas atitudes hoje, grandes transformações amanhã.</p>
+                <p style="color:var(--text);"><strong>JUNTOS PELO FUTURO</strong><br>Pequenas atitudes hoje, grandes transformações amanhã.</p>
             </div>
         </div>
     </div>
@@ -886,8 +882,13 @@
     
     function toggleTheme() {
         const body = document.body;
-        body.classList.toggle('light');
-        body.classList.toggle('dark');
+        if(body.classList.contains('light')){
+            body.classList.remove('light');
+            body.classList.add('dark');
+        } else {
+            body.classList.remove('dark');
+            body.classList.add('light');
+        }
         localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
     }
     
@@ -903,7 +904,7 @@
         document.body.classList.remove('font-moderna','font-classica','font-futurista','font-natureza');
         document.body.classList.add('font-default');
         localStorage.setItem('theme', 'light'); localStorage.setItem('fonte', 'default');
-        alert('✅ Configurações resetadas!');
+        alert('✅ Configurações resetadas para o padrão!');
     }
     
     const savedTheme = localStorage.getItem('theme');
@@ -1010,12 +1011,11 @@
     carregarQuiz();
     
     // ================================================
-    // AGRIBOT TURBINADO (RESPOSTAS COMPLETAS)
+    // AGRIBOT RESPOSTAS COMPLETAS
     // ================================================
     function responderBot(pergunta) {
         const p = pergunta.toLowerCase();
         
-        // RESPOSTAS SOBRE O QUIZ
         if(p.includes('quiz') || p.includes('me ensine sobre o quiz') || p.includes('estudar para o quiz')) {
             return "📚 *ESTUDE PARA O QUIZ COM O AGRIBOT!* 📚\n\n" +
                    "Aqui estão as RESPOSTAS do quiz para você estudar:\n\n" +
@@ -1027,7 +1027,6 @@
                    "💡 *DICA:* Estude essas respostas e você vai tirar NOTA MÁXIMA! 🌟";
         }
         
-        // RESPOSTAS SOBRE O SIMULADOR
         if(p.includes('simulador') || p.includes('dica para o simulador')) {
             return "📊 *DICAS PARA VOCÊ GANHAR NO SIMULADOR!* 📊\n\n" +
                    "Para ter o MELHOR RESULTADO (Lucro alto + Impacto Baixo):\n\n" +
@@ -1038,7 +1037,6 @@
                    "⚠️ Se escolher opções não sustentáveis, seu impacto sobe e lucro cai!";
         }
         
-        // RESPOSTAS SOBRE SUSTENTABILIDADE
         if(p.includes('agricultura sustentável') || p.includes('sustentabilidade')) {
             return "🌿 *AGRICULTURA SUSTENTÁVEL EXPLICADA* 🌿\n\n" +
                    "É um sistema que PRODUZ alimentos de forma RESPONSÁVEL, preservando o meio ambiente!\n\n" +
@@ -1096,7 +1094,6 @@
                    "Estude e vai arrasar no quiz! 🎯";
         }
         
-        // RESPOSTA PADRÃO
         return "🌱 *AGRIBOT - SEU ASSISTENTE DE ESTUDOS* 🌱\n\n" +
                "Posso te ajudar com:\n\n" +
                "📖 *'Me ensine sobre o quiz'* → estudo para as perguntas\n" +
@@ -1115,7 +1112,8 @@
         
         const chat = document.getElementById('chatArea');
         chat.innerHTML += `<div style="margin:8px 0; text-align:right;"><strong>👤 Você:</strong> ${texto}</div>`;
-        chat.innerHTML += `<div style="margin:8px 0; text-align:left;"><strong>🤖 Agribot:</strong><br><div class="chat-message-bot">${responderBot(texto).replace(/\n/g, '<br>')}</div></div>`;
+        const resposta = responderBot(texto).replace(/\n/g, '<br>');
+        chat.innerHTML += `<div style="margin:8px 0; text-align:left;"><strong>🤖 Agribot:</strong><br><div class="chat-message-bot">${resposta}</div></div>`;
         chat.scrollTop = chat.scrollHeight;
         input.value = '';
     }
@@ -1123,7 +1121,8 @@
     function perguntaRapida(texto) {
         const chat = document.getElementById('chatArea');
         chat.innerHTML += `<div style="margin:8px 0; text-align:right;"><strong>👤 Você:</strong> ${texto}</div>`;
-        chat.innerHTML += `<div style="margin:8px 0; text-align:left;"><strong>🤖 Agribot:</strong><br><div class="chat-message-bot">${responderBot(texto).replace(/\n/g, '<br>')}</div></div>`;
+        const resposta = responderBot(texto).replace(/\n/g, '<br>');
+        chat.innerHTML += `<div style="margin:8px 0; text-align:left;"><strong>🤖 Agribot:</strong><br><div class="chat-message-bot">${resposta}</div></div>`;
         chat.scrollTop = chat.scrollHeight;
     }
     
@@ -1146,6 +1145,7 @@
             msg.style.zIndex = "10000";
             msg.style.textAlign = "center";
             msg.style.fontSize = "1.3rem";
+            msg.style.fontWeight = "bold";
             msg.style.boxShadow = "0 10px 40px rgba(0,0,0,0.3)";
             document.body.appendChild(msg);
             setTimeout(() => msg.remove(), 3000);
