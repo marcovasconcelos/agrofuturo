@@ -40,7 +40,7 @@
             --shadow: rgba(0,0,0,0.1);
         }
 
-        /* MODO ESCURO */
+        /* MODO ESCURO - CORRIGIDO */
         body.dark {
             --bg: #1a2a1f;
             --card: #24332a;
@@ -60,7 +60,28 @@
             color: var(--text);
         }
 
-        /* ===== 5 FONTES DIFERENTES ===== */
+        /* Garantia de cores no modo escuro para TODOS os elementos */
+        body.dark .quiz-opt,
+        body.dark .quick-btn,
+        body.dark .chat-area,
+        body.dark .chat-input input,
+        body.dark .chat-input input::placeholder,
+        body.dark .opt-btn,
+        body.dark .resultado-card,
+        body.dark .mapa-item,
+        body.dark .card,
+        body.dark .sust-item li,
+        body.dark .sust-item h3,
+        body.dark .simulador-titulo {
+            color: var(--text);
+        }
+
+        body.dark .chat-input input {
+            background: var(--card);
+            border-color: var(--green);
+        }
+
+        /* ===== 5 FONTES ===== */
         body.font-default { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body.font-moderna { font-family: 'Poppins', 'Segoe UI', sans-serif; }
         body.font-classica { font-family: 'Georgia', 'Times New Roman', serif; }
@@ -68,7 +89,7 @@
         body.font-natureza { font-family: 'Quicksand', 'Segoe UI', sans-serif; font-weight: 500; }
 
         /* ================================================
-           TELA DE BOAS-VINDAS COM SLIDESHOW
+           TELA DE BOAS-VINDAS
            ================================================ */
         .splash {
             position: fixed;
@@ -101,10 +122,7 @@
             transition: opacity 1.5s ease;
         }
 
-        .splash-slide.active {
-            opacity: 1;
-        }
-
+        .splash-slide.active { opacity: 1; }
         .splash-slide::after {
             content: '';
             position: absolute;
@@ -155,10 +173,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .splash-content button:hover {
-            transform: scale(1.05);
-            background: #3aa86e;
-        }
+        .splash-content button:hover { transform: scale(1.05); background: #3aa86e; }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
@@ -173,24 +188,13 @@
         /* ================================================
            SITE PRINCIPAL
            ================================================ */
-        .main-site {
-            display: none;
-            flex: 1;
-        }
+        .main-site { display: none; flex: 1; }
+        .main-site.show { display: flex; flex-direction: column; min-height: 100vh; }
 
-        .main-site.show {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* ================================================
-           BOTÕES FLUTUANTES
-           ================================================ */
-        .settings-btn {
+        /* BOTÕES FLUTUANTES */
+        .settings-btn, .theme-btn {
             position: fixed;
             top: 10px;
-            right: 80px;
             background: var(--card);
             padding: 8px 12px;
             border-radius: 50px;
@@ -201,31 +205,12 @@
             border: 1px solid var(--green);
             transition: transform 0.2s;
             color: var(--text);
-            font-size: 0.9rem;
         }
+        .settings-btn { right: 80px; }
+        .theme-btn { right: 10px; }
+        .settings-btn:hover, .theme-btn:hover { transform: scale(1.05); }
 
-        .theme-btn {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: var(--card);
-            padding: 8px 15px;
-            border-radius: 50px;
-            cursor: pointer;
-            z-index: 99;
-            box-shadow: 0 2px 10px var(--shadow);
-            font-weight: bold;
-            border: 1px solid var(--green);
-            transition: transform 0.2s;
-            color: var(--text);
-            font-size: 0.9rem;
-        }
-
-        .settings-btn:hover, .theme-btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* PAINEL DE CONFIGURAÇÕES MELHORADO */
+        /* PAINEL CONFIGURAÇÕES */
         .settings-panel {
             position: fixed;
             top: 70px;
@@ -240,24 +225,17 @@
             display: none;
             animation: slideIn 0.3s ease;
         }
-
-        .settings-panel.show {
-            display: block;
-        }
-
+        .settings-panel.show { display: block; }
         @keyframes slideIn {
             from { opacity: 0; transform: translateX(50px); }
             to { opacity: 1; transform: translateX(0); }
         }
-
         .settings-panel h4 {
             margin-bottom: 12px;
             color: var(--text);
             border-bottom: 2px solid var(--green);
             padding-bottom: 5px;
-            font-size: 0.9rem;
         }
-
         .settings-panel button {
             display: block;
             width: 100%;
@@ -269,29 +247,21 @@
             color: var(--text);
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 0.8rem;
         }
+        .settings-panel button:hover { background: var(--green); color: white; }
 
-        .settings-panel button:hover {
-            background: var(--green);
-            color: white;
-        }
-
-        /* ================================================
-           HEADER COM SLIDESHOW NO TOPO
-           ================================================ */
+        /* HEADER COM SLIDESHOW */
         .hero {
             position: relative;
             color: white;
             text-align: center;
             border-radius: 0 0 40px 40px;
             overflow: hidden;
-            min-height: 400px;
+            min-height: 350px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
         .hero-slideshow {
             position: absolute;
             top: 0;
@@ -300,7 +270,6 @@
             height: 100%;
             z-index: 0;
         }
-
         .hero-slide {
             position: absolute;
             top: 0;
@@ -312,11 +281,7 @@
             opacity: 0;
             transition: opacity 1.5s ease;
         }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
+        .hero-slide.active { opacity: 1; }
         .hero-slide::after {
             content: '';
             position: absolute;
@@ -326,26 +291,22 @@
             height: 100%;
             background: var(--header-overlay);
         }
-
         .hero-content {
             position: relative;
             z-index: 2;
-            padding: 60px 20px;
+            padding: 50px 20px;
             width: 100%;
         }
-
         .hero h1 {
             font-size: clamp(1.5rem, 6vw, 2.8rem);
             margin-bottom: 15px;
             animation: floatText 3s ease-in-out infinite;
             color: white;
         }
-
         @keyframes floatText {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
-
         .hero span {
             background: var(--green);
             padding: 5px 18px;
@@ -355,23 +316,11 @@
             font-size: clamp(0.9rem, 3.5vw, 1.3rem);
             color: white;
         }
+        .hero p { color: white; font-size: clamp(0.9rem, 3.5vw, 1.2rem); }
 
-        .hero p {
-            color: white;
-            font-size: clamp(0.9rem, 3.5vw, 1.2rem);
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; flex: 1; }
 
-        /* ================================================
-           CONTAINER PRINCIPAL
-           ================================================ */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-            flex: 1;
-        }
-
-        /* MENU HAMBÚRGUER */
+        /* MENU MOBILE */
         .mobile-menu-btn {
             display: none;
             background: var(--green);
@@ -384,7 +333,6 @@
             margin: 20px auto;
             width: fit-content;
         }
-
         .tabs {
             display: flex;
             flex-wrap: wrap;
@@ -396,11 +344,7 @@
             border-radius: 60px;
             box-shadow: 0 2px 8px var(--shadow);
         }
-
-        .tabs.mobile-hidden {
-            display: none;
-        }
-
+        .tabs.mobile-hidden { display: none; }
         .tabs.mobile-show {
             display: flex;
             flex-direction: column;
@@ -413,7 +357,6 @@
             border-radius: 20px;
             gap: 5px;
         }
-
         .tab {
             background: transparent;
             border: none;
@@ -423,33 +366,15 @@
             color: var(--text);
             font-weight: 600;
             transition: all 0.3s;
-            font-size: clamp(0.75rem, 3vw, 1rem);
         }
-
-        .tab:hover {
-            background: var(--green-light);
-            transform: translateY(-2px);
-        }
-
-        .tab.active {
-            background: var(--green);
-            color: white;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
+        .tab:hover { background: var(--green-light); transform: translateY(-2px); }
+        .tab.active { background: var(--green); color: white; }
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         h2 {
             font-size: clamp(1.2rem, 5vw, 1.8rem);
             margin-bottom: 20px;
@@ -458,16 +383,13 @@
             padding-left: 15px;
         }
 
-        /* ================================================
-           CARDS DE TECNOLOGIAS
-           ================================================ */
+        /* CARDS */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
-
         .card {
             background: var(--card);
             padding: 20px;
@@ -476,131 +398,10 @@
             transition: all 0.3s;
             border: 1px solid var(--border);
         }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px var(--shadow); }
+        .card .icon { font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 12px; display: inline-block; }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px var(--shadow);
-        }
-
-        .card .icon {
-            font-size: clamp(2rem, 8vw, 3rem);
-            margin-bottom: 12px;
-            display: inline-block;
-        }
-
-        .card h3 {
-            margin-bottom: 8px;
-            color: var(--text);
-            font-size: clamp(1rem, 4vw, 1.2rem);
-        }
-
-        /* ================================================
-           SIMULADOR DECORADO (MAIS BONITO)
-           ================================================ */
-        .simulador {
-            background: var(--card);
-            padding: 25px;
-            border-radius: 30px;
-            border: 1px solid var(--border);
-        }
-
-        .simulador-titulo {
-            text-align: center;
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            padding: 10px;
-            background: var(--green-light);
-            border-radius: 50px;
-            color: var(--green);
-        }
-
-        .options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 25px 0;
-        }
-
-        .opt-group {
-            flex: 1;
-            min-width: 140px;
-            background: var(--bg);
-            padding: 15px;
-            border-radius: 20px;
-        }
-
-        .opt-group h4 {
-            margin-bottom: 10px;
-            color: var(--text);
-            font-size: clamp(0.9rem, 3.5vw, 1rem);
-            text-align: center;
-        }
-
-        .opt-btn {
-            background: var(--card);
-            border: 2px solid var(--green);
-            padding: 8px 12px;
-            border-radius: 40px;
-            margin: 4px;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: var(--text);
-            font-size: clamp(0.75rem, 3vw, 0.85rem);
-        }
-
-        .opt-btn:hover {
-            transform: translateY(-2px);
-            background: var(--green-light);
-        }
-
-        .opt-btn.active {
-            background: var(--green);
-            color: white;
-            border-color: var(--green-dark);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-
-        .resultados {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            background: linear-gradient(135deg, var(--green-light), var(--bg));
-            padding: 20px;
-            border-radius: 25px;
-            margin-top: 20px;
-        }
-
-        .resultado-card {
-            text-align: center;
-            background: var(--card);
-            padding: 15px;
-            border-radius: 20px;
-            transition: transform 0.3s;
-        }
-
-        .resultado-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .resultado-icon {
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-
-        .resultado-label {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-
-        .resultado-valor {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--green);
-        }
-
-        /* ================================================
-           SUSTENTABILIDADE
-           ================================================ */
+        /* SUSTENTABILIDADE */
         .sustentabilidade {
             display: flex;
             flex-wrap: wrap;
@@ -610,39 +411,75 @@
             border-radius: 30px;
             border: 1px solid var(--border);
         }
+        .sust-item { flex: 1; min-width: 200px; }
+        .sust-item ul { list-style: none; margin-top: 10px; }
+        .sust-item li { margin: 10px 0; display: flex; align-items: center; gap: 8px; color: var(--text); }
 
-        .sust-item {
-            flex: 1;
-            min-width: 200px;
+        /* SIMULADOR */
+        .simulador {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
         }
-
-        .sust-item h3 {
-            color: var(--text);
-            margin-bottom: 12px;
+        .simulador-titulo {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: var(--green-light);
+            border-radius: 50px;
+            color: var(--green);
         }
-
-        .sust-item ul {
-            list-style: none;
-        }
-
-        .sust-item li {
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text);
-        }
-
-        /* ================================================
-           QUIZ MAIS DIFÍCIL
-           ================================================ */
-        .quiz-opts {
+        .options {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
+            gap: 20px;
+            margin: 25px 0;
         }
+        .opt-group {
+            flex: 1;
+            min-width: 140px;
+            background: var(--bg);
+            padding: 15px;
+            border-radius: 20px;
+        }
+        .opt-group h4 { margin-bottom: 10px; color: var(--text); text-align: center; }
+        .opt-btn {
+            background: var(--card);
+            border: 2px solid var(--green);
+            padding: 8px 12px;
+            border-radius: 40px;
+            margin: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text);
+        }
+        .opt-btn:hover { transform: translateY(-2px); background: var(--green-light); }
+        .opt-btn.active { background: var(--green); color: white; border-color: var(--green-dark); }
+        .resultados {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            background: linear-gradient(135deg, var(--green-light), var(--bg));
+            padding: 20px;
+            border-radius: 25px;
+            margin-top: 20px;
+        }
+        .resultado-card {
+            text-align: center;
+            background: var(--card);
+            padding: 15px;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+        .resultado-card:hover { transform: translateY(-5px); }
+        .resultado-icon { font-size: 2rem; margin-bottom: 8px; }
+        .resultado-label { font-size: 0.8rem; color: var(--text-light); }
+        .resultado-valor { font-size: 1.3rem; font-weight: bold; color: var(--green); }
 
+        /* QUIZ */
+        .quiz-opts { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
         .quiz-opt {
             background: var(--bg);
             padding: 10px 18px;
@@ -653,13 +490,7 @@
             color: var(--text);
             font-weight: 500;
         }
-
-        .quiz-opt:hover {
-            background: var(--green);
-            color: white;
-            transform: translateX(3px);
-        }
-
+        .quiz-opt:hover { background: var(--green); color: white; transform: translateX(3px); }
         .quiz-resultado {
             background: var(--green-light);
             padding: 20px;
@@ -668,23 +499,12 @@
             text-align: center;
         }
 
-        .quiz-classificacao {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-top: 10px;
-            padding: 12px;
-            border-radius: 30px;
-        }
-
-        /* ================================================
-           MAPA
-           ================================================ */
+        /* MAPA */
         .mapa-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 15px;
         }
-
         .mapa-item {
             background: var(--green-light);
             padding: 15px;
@@ -692,33 +512,65 @@
             text-align: center;
             transition: all 0.3s;
             cursor: pointer;
+            color: var(--text);
         }
-
-        .mapa-item:hover {
-            transform: translateY(-5px);
-            background: var(--green);
-            color: white;
-        }
+        .mapa-item:hover { transform: translateY(-5px); background: var(--green); color: white; }
 
         /* ================================================
-           CHAT
+           AGRIBOT TURBINADO E DECORADO
            ================================================ */
+        .agribot-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            border-radius: 50px;
+            color: white;
+        }
+        .agribot-header .icon { font-size: 2.5rem; animation: bounce 2s infinite; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .agribot-header h3 { font-size: 1.3rem; }
+        
         .chat-area {
             background: var(--bg);
             padding: 15px;
             border-radius: 25px;
-            height: 220px;
+            height: 250px;
             overflow-y: auto;
             margin: 15px 0;
+            color: var(--text);
         }
-
+        .chat-message-bot {
+            background: var(--green-light);
+            padding: 10px 15px;
+            border-radius: 20px;
+            margin: 8px 0;
+            max-width: 85%;
+            display: inline-block;
+            border-left: 4px solid var(--green);
+        }
+        .chat-message-user {
+            background: var(--card);
+            padding: 10px 15px;
+            border-radius: 20px;
+            margin: 8px 0;
+            max-width: 85%;
+            display: inline-block;
+            float: right;
+            border-right: 4px solid var(--gold);
+        }
         .chat-input {
             display: flex;
             gap: 10px;
             margin-top: 15px;
             flex-wrap: wrap;
         }
-
         .chat-input input {
             flex: 1;
             padding: 12px;
@@ -727,7 +579,7 @@
             background: var(--card);
             color: var(--text);
         }
-
+        .chat-input input::placeholder { color: var(--text-light); }
         .chat-input button {
             background: var(--green);
             border: none;
@@ -736,28 +588,36 @@
             color: white;
             cursor: pointer;
             font-weight: bold;
+            transition: transform 0.2s;
         }
-
+        .chat-input button:hover { transform: scale(1.02); }
+        
         .quick-buttons {
             display: flex;
-            gap: 8px;
-            margin-top: 15px;
+            gap: 10px;
+            margin-top: 20px;
             flex-wrap: wrap;
+            justify-content: center;
         }
-
         .quick-btn {
             background: var(--bg);
             border: 1px solid var(--green);
-            padding: 6px 12px;
+            padding: 8px 15px;
             border-radius: 40px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             transition: all 0.2s;
+            color: var(--text);
+        }
+        .quick-btn:hover { background: var(--green); color: white; transform: translateY(-2px); }
+        
+        .sugestoes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        /* ================================================
-           RODAPÉ SIMPLES (SEM DIREITOS AUTORAIS)
-           ================================================ */
         footer {
             background: var(--green);
             color: white;
@@ -767,14 +627,14 @@
             border-radius: 30px 30px 0 0;
         }
 
-        footer p {
-            color: white;
-            font-size: 0.9rem;
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .tabs { display: none; }
+            .tabs.mobile-show { display: flex; }
+            .resultados { grid-template-columns: 1fr; }
+            .sugestoes-grid { grid-template-columns: 1fr; }
         }
-
-        /* ================================================
-           EASTER EGG (SECRETO!)
-           ================================================ */
+        
         .easter-egg {
             position: fixed;
             bottom: 10px;
@@ -785,28 +645,15 @@
             cursor: pointer;
             z-index: 999;
         }
-        
-        .easter-egg:hover {
-            opacity: 0.3;
-        }
-
-        /* MEDIA QUERIES */
-        @media (max-width: 768px) {
-            .mobile-menu-btn { display: block; }
-            .tabs { display: none; }
-            .tabs.mobile-show { display: flex; }
-            .resultados { grid-template-columns: 1fr; }
-        }
+        .easter-egg:hover { opacity: 0.3; }
     </style>
-    <!-- Fontes extras -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="light font-default">
 
-<!-- EASTER EGG SECRETO! Clique no cantinho inferior esquerdo 5x -->
 <div class="easter-egg" id="easterEgg" onclick="ativarEasterEgg()"></div>
 
-<!-- TELA DE BOAS-VINDAS -->
+<!-- SPLASH -->
 <div class="splash" id="splash">
     <div class="splash-slideshow" id="splashSlideshow">
         <div class="splash-slide active" style="background-image: url('https://images.pexels.com/photos/164504/pexels-photo-164504.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
@@ -821,7 +668,7 @@
     </div>
 </div>
 
-<!-- SITE PRINCIPAL -->
+<!-- MAIN SITE -->
 <div class="main-site" id="mainSite">
     <div class="settings-btn" onclick="toggleSettings()">⚙️</div>
     <div class="theme-btn" onclick="toggleTheme()">☀️/🌙</div>
@@ -834,13 +681,12 @@
         <button onclick="mudarFonte('classica')">📜 Fonte Clássica</button>
         <button onclick="mudarFonte('futurista')">🚀 Fonte Futurista</button>
         <button onclick="mudarFonte('natureza')">🌿 Fonte Natureza</button>
-        <hr style="margin: 8px 0;">
+        <hr>
         <button onclick="resetarConfiguracoes()">🔄 Resetar Padrões</button>
     </div>
 
     <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰ MENU</button>
 
-    <!-- HEADER COM SLIDESHOW -->
     <div class="hero">
         <div class="hero-slideshow" id="heroSlideshow">
             <div class="hero-slide active" style="background-image: url('https://images.pexels.com/photos/164504/pexels-photo-164504.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
@@ -891,7 +737,7 @@
             </div>
         </div>
 
-        <!-- SIMULADOR MELHORADO -->
+        <!-- SIMULADOR -->
         <div id="simulador" class="tab-content">
             <h2>📊 SIMULADOR DA FAZENDA SUSTENTÁVEL</h2>
             <div class="simulador">
@@ -931,13 +777,13 @@
             <p style="text-align:center; margin-top:20px;">ℹ️ O Paraná é destaque nacional no agronegócio sustentável!</p>
         </div>
 
-        <!-- QUIZ MAIS DIFÍCIL -->
+        <!-- QUIZ -->
         <div id="quiz" class="tab-content">
             <h2>❓ QUIZ DESAFIO AGROFUTURO</h2>
             <div class="simulador">
                 <div id="pergunta" style="font-size: clamp(1rem,4vw,1.2rem); font-weight:bold; margin-bottom:15px;">🧠 Qual tecnologia ajuda a economizar água?</div>
                 <div class="quiz-opts" id="quizOptions"></div>
-                <button class="opt-btn" onclick="proximaPergunta()">➡️ Próxima Pergunta</button>
+                <button class="opt-btn" onclick="proximaPergunta()" id="nextQuizBtn">➡️ Próxima Pergunta</button>
                 <div id="quizFeedback" style="margin-top:15px;"></div>
                 <div id="quizResultadoArea" class="quiz-resultado" style="display:none;">
                     <h4>📊 RESULTADO</h4>
@@ -950,16 +796,48 @@
             </div>
         </div>
 
-        <!-- AGRIBOT -->
+        <!-- AGRIBOT TURBINADO -->
         <div id="agribot" class="tab-content">
-            <h2>🤖 AGRIBOT - Assistente Virtual</h2>
+            <h2>🤖 AGRIBOT - SEU PROFESSOR VIRTUAL</h2>
             <div class="simulador">
-                <div class="chat-area" id="chatArea"><div>🤖 Olá! Pergunte sobre sustentabilidade, energia solar ou economia de água.</div></div>
-                <div class="chat-input"><input type="text" id="chatInput" placeholder="Digite sua pergunta..."><button onclick="enviarMensagem()">📤 Enviar</button></div>
+                <div class="agribot-header">
+                    <div class="icon">🌱</div>
+                    <h3>📚 Estude com o Agribot e tire 10 no Quiz!</h3>
+                    <div class="icon">🤖</div>
+                </div>
+                
+                <div class="chat-area" id="chatArea">
+                    <div class="chat-message-bot">
+                        🤖 Olá! Eu sou o Agribot, seu assistente de estudos!<br>
+                        📖 Posso te ajudar com:<br>
+                        • ✅ Perguntas do QUIZ (estude para a prova!)<br>
+                        • 📊 Dicas do SIMULADOR (como melhorar sua fazenda)<br>
+                        • 🌍 Informações sobre sustentabilidade<br>
+                        • 💡 Tecnologias do futuro<br><br>
+                        Pergunte: "Me ensine sobre o quiz" ou "Dica para o simulador"!
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Digite sua pergunta... Ex: Me ajuda com o quiz">
+                    <button onclick="enviarMensagem()">📤 Enviar</button>
+                </div>
+                
                 <div class="quick-buttons">
-                    <button class="quick-btn" onclick="perguntaRapida('agricultura sustentável')">🌿 Agricultura sustentável</button>
-                    <button class="quick-btn" onclick="perguntaRapida('energia solar')">☀️ Benefícios da energia solar</button>
-                    <button class="quick-btn" onclick="perguntaRapida('água')">💧 Reduzir uso de água</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Me ensine sobre o quiz')">📖 Estudar para o Quiz</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Dica para o simulador')">📊 Dicas do Simulador</button>
+                    <button class="quick-btn" onclick="perguntaRapida('O que é agricultura sustentável?')">🌿 Agricultura Sustentável</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Benefícios da energia solar')">☀️ Energia Solar</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Como economizar água na lavoura?')">💧 Economizar Água</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Tecnologias do futuro')">🔬 Tecnologias</button>
+                </div>
+                
+                <div class="sugestoes-grid">
+                    <button class="quick-btn" onclick="perguntaRapida('Qual a resposta da primeira pergunta do quiz?')">❓ Dica pergunta 1</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Qual a resposta da segunda pergunta do quiz?')">❓ Dica pergunta 2</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Qual a resposta da terceira pergunta do quiz?')">❓ Dica pergunta 3</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Qual a resposta da quarta pergunta do quiz?')">❓ Dica pergunta 4</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Qual a resposta da quinta pergunta do quiz?')">❓ Dica pergunta 5</button>
                 </div>
             </div>
         </div>
@@ -986,7 +864,7 @@
 
 <script>
     // ================================================
-    // SPLASH SCREEN
+    // SPLASH E SLIDESHOWS
     // ================================================
     let splashSlideIndex = 0;
     const splashSlides = document.querySelectorAll('.splash-slide');
@@ -1008,8 +886,8 @@
     
     function toggleTheme() {
         const body = document.body;
-        if(body.classList.contains('light')){ body.classList.remove('light'); body.classList.add('dark'); }
-        else{ body.classList.remove('dark'); body.classList.add('light'); }
+        body.classList.toggle('light');
+        body.classList.toggle('dark');
         localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
     }
     
@@ -1025,7 +903,7 @@
         document.body.classList.remove('font-moderna','font-classica','font-futurista','font-natureza');
         document.body.classList.add('font-default');
         localStorage.setItem('theme', 'light'); localStorage.setItem('fonte', 'default');
-        alert('✅ Configurações resetadas para o padrão!');
+        alert('✅ Configurações resetadas!');
     }
     
     const savedTheme = localStorage.getItem('theme');
@@ -1039,9 +917,6 @@
     let mobileMenuOpen = false;
     function toggleMobileMenu() { const tabs = document.getElementById('tabsContainer'); mobileMenuOpen = !mobileMenuOpen; tabs.classList.toggle('mobile-show', mobileMenuOpen); }
     
-    // ================================================
-    // ABAS
-    // ================================================
     function mudarTab(tabId, element) {
         if(mobileMenuOpen) toggleMobileMenu();
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -1076,7 +951,7 @@
     }, 100);
     
     // ================================================
-    // QUIZ MAIS DIFÍCIL
+    // QUIZ (5 PERGUNTAS)
     // ================================================
     const perguntas = [
         { texto: "❓ Qual tecnologia utiliza sensores para irrigação precisa e reduz desperdício de água em até 60%?", opts: ["Drone Agrícola", "Irrigação Inteligente", "Trator Autônomo", "Biotecnologia"], correta: 1 },
@@ -1120,7 +995,7 @@
         let acertos = 0;
         for(let i=0;i<perguntas.length;i++) if(respostasUsuario[i] === perguntas[i].correta) acertos++;
         const porcentagem = (acertos/perguntas.length)*100;
-        let classificacao = porcentagem >= 80 ? "🌿 EXPERT EM SUSTENTABILIDADE! 🏆" : (porcentagem >= 50 ? "🌱 BOM TRABALHO! Continue aprendendo! 💚" : "📚 Que tal estudar mais sobre sustentabilidade? Vamos melhorar! 🌍");
+        let classificacao = porcentagem >= 80 ? "🌿 EXPERT EM SUSTENTABILIDADE! 🏆" : (porcentagem >= 50 ? "🌱 BOM TRABALHO! Continue aprendendo! 💚" : "📚 Que tal estudar mais com o Agribot? Vamos melhorar! 🌍");
         document.getElementById('quizPontuacao').innerHTML = `📊 Pontuação: ${porcentagem.toFixed(0)}%`;
         document.getElementById('quizAcertos').innerHTML = `✅ Acertos: ${acertos}`;
         document.getElementById('quizErros').innerHTML = `❌ Erros: ${perguntas.length-acertos}`;
@@ -1135,42 +1010,129 @@
     carregarQuiz();
     
     // ================================================
-    // CHATBOT
+    // AGRIBOT TURBINADO (RESPOSTAS COMPLETAS)
     // ================================================
-    function responderBot(p) {
-        const pergunta = p.toLowerCase();
-        if(pergunta.includes('agricultura sustentável')) return "🌿 Agricultura sustentável une produtividade e preservação ambiental, garantindo recursos para o futuro! Inclui rotação de culturas, uso consciente da água e bioinsumos.";
-        if(pergunta.includes('energia solar')) return "☀️ Energia solar reduz custos, evita emissão de carbono e traz independência energética para o campo! Perfeita para irrigação e refrigeração.";
-        if(pergunta.includes('água') || pergunta.includes('reduzir')) return "💧 Para economizar água: use irrigação inteligente (gotejamento), captação de chuva, sensores de solo e plantio direto na palha.";
-        return "🌱 Sou o Agribot! Posso ajudar com perguntas sobre sustentabilidade, tecnologias verdes, energia solar e práticas agrícolas!";
+    function responderBot(pergunta) {
+        const p = pergunta.toLowerCase();
+        
+        // RESPOSTAS SOBRE O QUIZ
+        if(p.includes('quiz') || p.includes('me ensine sobre o quiz') || p.includes('estudar para o quiz')) {
+            return "📚 *ESTUDE PARA O QUIZ COM O AGRIBOT!* 📚\n\n" +
+                   "Aqui estão as RESPOSTAS do quiz para você estudar:\n\n" +
+                   "❓ **Pergunta 1:** Qual tecnologia economiza água? → *IRRIGAÇÃO INTELIGENTE* (Ela reduz desperdício em até 60%!)\n\n" +
+                   "❓ **Pergunta 2:** Prática que recupera solos? → *AGRICULTURA REGENERATIVA* (Sequestra carbono e melhora o solo!)\n\n" +
+                   "❓ **Pergunta 3:** Melhor energia para áreas remotas? → *ENERGIA SOLAR* (Renovável e independente!)\n\n" +
+                   "❓ **Pergunta 4:** O que são bioinsumos? → *DEFENSIVOS NATURAIS* (Alternativa ecológica aos químicos!)\n\n" +
+                   "❓ **Pergunta 5:** Benefício da rotação de culturas? → *MELHORA A FERTILIDADE DO SOLO* (Evita o esgotamento!)\n\n" +
+                   "💡 *DICA:* Estude essas respostas e você vai tirar NOTA MÁXIMA! 🌟";
+        }
+        
+        // RESPOSTAS SOBRE O SIMULADOR
+        if(p.includes('simulador') || p.includes('dica para o simulador')) {
+            return "📊 *DICAS PARA VOCÊ GANHAR NO SIMULADOR!* 📊\n\n" +
+                   "Para ter o MELHOR RESULTADO (Lucro alto + Impacto Baixo):\n\n" +
+                   "✅ **ÁGUA:** Escolha USO CONSCIENTE (economiza 45% de água)\n" +
+                   "✅ **ENERGIA:** Escolha ENERGIA LIMPA (Solar/Biomassa)\n" +
+                   "✅ **PLANTIO:** Escolha SUSTENTÁVEL (Rotação de culturas)\n\n" +
+                   "🌟 *RESULTADO:* Lucro ~R$160.000 | Impacto BAIXO | 5 ESTRELAS!\n\n" +
+                   "⚠️ Se escolher opções não sustentáveis, seu impacto sobe e lucro cai!";
+        }
+        
+        // RESPOSTAS SOBRE SUSTENTABILIDADE
+        if(p.includes('agricultura sustentável') || p.includes('sustentabilidade')) {
+            return "🌿 *AGRICULTURA SUSTENTÁVEL EXPLICADA* 🌿\n\n" +
+                   "É um sistema que PRODUZ alimentos de forma RESPONSÁVEL, preservando o meio ambiente!\n\n" +
+                   "🔹 *PRINCÍPIOS:*\n" +
+                   "• Reduzir desperdício de água e recursos\n" +
+                   "• Proteger o solo contra erosão\n" +
+                   "• Usar bioinsumos (defensivos naturais)\n" +
+                   "• Rotacionar culturas para não empobrecer o solo\n\n" +
+                   "🔹 *BENEFÍCIOS:*\n" +
+                   "• Solo mais fértil por mais tempo\n" +
+                   "• Menos poluição dos rios\n" +
+                   "• Alimentos mais saudáveis\n" +
+                   "• Futuro garantido para próximas gerações! 🌍";
+        }
+        
+        if(p.includes('energia solar')) {
+            return "☀️ *ENERGIA SOLAR NO CAMPO* ☀️\n\n" +
+                   "A energia solar é PERFEITA para propriedades rurais porque:\n\n" +
+                   "✅ REDUZ custos com eletricidade (economia de até 90%!)\n" +
+                   "✅ É RENOVÁVEL e não polui (zero emissão de carbono)\n" +
+                   "✅ Traz AUTONOMIA para áreas remotas (sem depender da rede)\n" +
+                   "✅ Perfeita para: irrigação, cercas elétricas, refrigeração do leite\n\n" +
+                   "💡 *CURIOSIDADE:* Uma fazenda solar pode economizar mais de R$30.000 por ano!";
+        }
+        
+        if(p.includes('água') || p.includes('economizar água') || p.includes('reduzir água')) {
+            return "💧 *COMO ECONOMIZAR ÁGUA NA LAVOURA* 💧\n\n" +
+                   "🌟 *TÉCNICAS EFICIENTES:*\n\n" +
+                   "1. **IRRIGAÇÃO INTELIGENTE** (gotejamento) → economiza até 60% de água!\n" +
+                   "2. **SENSORES DE SOLO** → irrigam só quando necessário\n" +
+                   "3. **CAPTAÇÃO DE ÁGUA DA CHUVA** → aproveite a natureza\n" +
+                   "4. **PLANTIO DIRETO NA PALHA** → mantém a umidade do solo\n" +
+                   "5. **ROTAÇÃO DE CULTURAS** → melhora a retenção de água\n\n" +
+                   "🌱 *RESULTADO:* Plantações mais saudáveis e conta de água reduzida!";
+        }
+        
+        if(p.includes('tecnologias') || p.includes('tecnologia do futuro')) {
+            return "🔬 *TECNOLOGIAS DO FUTURO PARA O CAMPO* 🔬\n\n" +
+                   "🚁 **DRONE AGRÍCOLA** → monitora pragas e saúde das plantas\n" +
+                   "💧 **IRRIGAÇÃO INTELIGENTE** → água só onde precisa\n" +
+                   "☀️ **ENERGIA SOLAR** → energia limpa e gratuita\n" +
+                   "📊 **SENSORES DE SOLO** → dados em tempo real\n" +
+                   "🚜 **TRATORES AUTÔNOMOS** → dirigem sozinhos com GPS\n" +
+                   "🧬 **BIOTECNOLOGIA** → sementes resistentes a pragas\n\n" +
+                   "🌟 Essas tecnologias estão REVOLUCIONANDO o campo brasileiro!";
+        }
+        
+        if(p.includes('resposta') || p.includes('pergunta')) {
+            return "📖 *DICAS DAS RESPOSTAS DO QUIZ:*\n\n" +
+                   "• P1: Irrigação Inteligente (letra B)\n" +
+                   "• P2: Agricultura Regenerativa (letra B)\n" +
+                   "• P3: Energia Solar (letra B)\n" +
+                   "• P4: Defensivos naturais (letra B)\n" +
+                   "• P5: Melhora a fertilidade do solo (letra C)\n\n" +
+                   "Estude e vai arrasar no quiz! 🎯";
+        }
+        
+        // RESPOSTA PADRÃO
+        return "🌱 *AGRIBOT - SEU ASSISTENTE DE ESTUDOS* 🌱\n\n" +
+               "Posso te ajudar com:\n\n" +
+               "📖 *'Me ensine sobre o quiz'* → estudo para as perguntas\n" +
+               "📊 *'Dica para o simulador'* → como vencer no jogo\n" +
+               "🌿 *'O que é agricultura sustentável?'* → conceitos importantes\n" +
+               "☀️ *'Benefícios da energia solar'* → vantagens para o campo\n" +
+               "💧 *'Como economizar água?'* → dicas práticas\n" +
+               "🔬 *'Tecnologias do futuro'* → inovações no agro\n\n" +
+               "Pergunte o que quiser! 🚀";
     }
     
     function enviarMensagem() {
-        const input = document.getElementById('chatInput'), texto = input.value.trim();
+        const input = document.getElementById('chatInput');
+        const texto = input.value.trim();
         if(!texto) return;
+        
         const chat = document.getElementById('chatArea');
-        chat.innerHTML += `<div style="margin:8px 0;text-align:right;"><strong>👤 Você:</strong> ${texto}</div>`;
-        chat.innerHTML += `<div style="margin:8px 0;text-align:left;color:var(--green);"><strong>🤖 Agribot:</strong> ${responderBot(texto)}</div>`;
+        chat.innerHTML += `<div style="margin:8px 0; text-align:right;"><strong>👤 Você:</strong> ${texto}</div>`;
+        chat.innerHTML += `<div style="margin:8px 0; text-align:left;"><strong>🤖 Agribot:</strong><br><div class="chat-message-bot">${responderBot(texto).replace(/\n/g, '<br>')}</div></div>`;
         chat.scrollTop = chat.scrollHeight;
         input.value = '';
     }
     
     function perguntaRapida(texto) {
         const chat = document.getElementById('chatArea');
-        chat.innerHTML += `<div style="margin:8px 0;text-align:right;"><strong>👤 Você:</strong> ${texto}</div>`;
-        chat.innerHTML += `<div style="margin:8px 0;text-align:left;color:var(--green);"><strong>🤖 Agribot:</strong> ${responderBot(texto)}</div>`;
+        chat.innerHTML += `<div style="margin:8px 0; text-align:right;"><strong>👤 Você:</strong> ${texto}</div>`;
+        chat.innerHTML += `<div style="margin:8px 0; text-align:left;"><strong>🤖 Agribot:</strong><br><div class="chat-message-bot">${responderBot(texto).replace(/\n/g, '<br>')}</div></div>`;
         chat.scrollTop = chat.scrollHeight;
     }
     
-    // ================================================
-    // EASTER EGG SECRETO! 🥚
-    // ================================================
+    // EASTER EGG
     let eggCount = 0;
     function ativarEasterEgg() {
         eggCount++;
         if(eggCount === 5) {
             eggCount = 0;
-            document.body.style.background = "linear-gradient(135deg, #ffd89b, #c7e9fb)";
             const msg = document.createElement('div');
             msg.innerHTML = "🎉 PARABÉNS! VOCÊ ENCONTROU O EASTER EGG! 🎉<br>🌱 Você é um verdadeiro explorador do AgroFuturo! 🌟";
             msg.style.position = "fixed";
@@ -1183,12 +1145,10 @@
             msg.style.borderRadius = "30px";
             msg.style.zIndex = "10000";
             msg.style.textAlign = "center";
-            msg.style.fontSize = "1.5rem";
+            msg.style.fontSize = "1.3rem";
             msg.style.boxShadow = "0 10px 40px rgba(0,0,0,0.3)";
-            msg.style.animation = "pulse 0.5s";
             document.body.appendChild(msg);
             setTimeout(() => msg.remove(), 3000);
-            setTimeout(() => document.body.style.background = "", 3000);
         }
     }
     
