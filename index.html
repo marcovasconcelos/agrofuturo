@@ -72,7 +72,7 @@
         body.font-natureza { font-family: 'Quicksand', 'Segoe UI', sans-serif; font-weight: 500; }
 
         /* ================================================
-           TELA DE BOAS-VINDAS
+           TELA DE BOAS-VINDAS COM DESCRIÇÃO
            ================================================ */
         .splash {
             position: fixed;
@@ -113,7 +113,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(0, 0, 0, 0.6);
         }
 
         .splash-content {
@@ -137,11 +137,50 @@
             animation: pulse 2s infinite;
         }
 
-        .splash-content p {
-            color: #ffffff;
-            font-size: clamp(1rem, 4vw, 1.3rem);
-            margin-bottom: 25px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        /* DESCRIÇÃO DO SITE NA TELA INICIAL */
+        .splash-description {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 20px 30px;
+            max-width: 90%;
+            margin: 20px auto;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .splash-description p {
+            color: white;
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
+            line-height: 1.5;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .splash-description .destaque {
+            display: inline-block;
+            background: #2d8c5a;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin: 3px;
+            font-size: 0.85rem;
+        }
+
+        .splash-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .splash-feature {
+            background: rgba(45, 140, 90, 0.8);
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .splash-content button {
@@ -155,6 +194,7 @@
             transition: transform 0.2s;
             font-weight: bold;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin-top: 20px;
         }
 
         .splash-content button:hover { transform: scale(1.05); background: #3aa86e; }
@@ -609,7 +649,7 @@
         
         .sugestoes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 10px;
             margin-top: 15px;
         }
@@ -642,6 +682,8 @@
             .tabs.mobile-show { display: flex; }
             .resultados { grid-template-columns: 1fr; }
             .sugestoes-grid { grid-template-columns: 1fr; }
+            .splash-features { gap: 8px; }
+            .splash-feature { font-size: 0.7rem; padding: 5px 10px; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -650,7 +692,7 @@
 
 <div class="easter-egg" id="easterEgg" onclick="ativarEasterEgg()">🥚</div>
 
-<!-- SPLASH -->
+<!-- SPLASH / TELA INICIAL COM DESCRIÇÃO -->
 <div class="splash" id="splash">
     <div class="splash-slideshow" id="splashSlideshow">
         <div class="splash-slide active" style="background-image: url('https://images.pexels.com/photos/164504/pexels-photo-164504.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
@@ -660,7 +702,23 @@
     </div>
     <div class="splash-content">
         <h1>🌱 AGROFUTURO 2050</h1>
-        <p>🌍 Produzir mais, preservar melhor! 🌾</p>
+        
+        <!-- DESCRIÇÃO DO SITE -->
+        <div class="splash-description">
+            <p>🌟 <strong>Bem-vindo ao futuro da agricultura sustentável!</strong> 🌟</p>
+            <p style="margin-top: 10px;">Aqui você vai encontrar <strong>informações completas</strong> sobre tecnologias verdes, <strong>jogos interativos</strong> para aprender na prática, e o <strong>🤖 Agribot</strong>, seu assistente virtual para estudar sobre agricultura sustentável.</p>
+        </div>
+        
+        <!-- FEATURES DESTAQUE -->
+        <div class="splash-features">
+            <span class="splash-feature">🔬 Tecnologias do Futuro</span>
+            <span class="splash-feature">🌿 Sustentabilidade</span>
+            <span class="splash-feature">📊 Simulador Interativo</span>
+            <span class="splash-feature">❓ Quiz Desafio</span>
+            <span class="splash-feature">🤖 Agribot Professor</span>
+            <span class="splash-feature">🗺️ Mapa do Paraná</span>
+        </div>
+        
         <button onclick="entrar()">🌿 EXPLORAR AGORA</button>
     </div>
 </div>
@@ -699,7 +757,7 @@
 
     <div class="container">
         <div class="tabs" id="tabsContainer">
-            <button class="tab active" onclick="mudarTab('tecnologias', this)">🔬 Tecnologias</button>
+            <button class="tab active" onclick="mudarTab('teknologias', this)">🔬 Tecnologias</button>
             <button class="tab" onclick="mudarTab('sustentabilidade', this)">🌿 Sustentabilidade</button>
             <button class="tab" onclick="mudarTab('simulador', this)">📊 Simulador</button>
             <button class="tab" onclick="mudarTab('mapa', this)">🗺️ Mapa PR</button>
@@ -709,7 +767,7 @@
         </div>
 
         <!-- TECNOLOGIAS -->
-        <div id="tecnologias" class="tab-content active">
+        <div id="teknologias" class="tab-content active">
             <h2>🔬 TECNOLOGIAS DO FUTURO</h2>
             <div class="grid-cards">
                 <div class="card"><div class="icon">🛸</div><h3>DRONE AGRÍCOLA</h3><p>Monitora plantações rapidamente</p></div>
@@ -807,11 +865,11 @@
                     <div class="chat-message-bot">
                         🤖 Olá! Eu sou o Agribot, seu assistente de estudos!<br><br>
                         📖 Posso te ajudar com:<br>
-                        • ✅ Perguntas do QUIZ (estude para a prova!)<br>
+                        • ✅ Dicas para o QUIZ (não vou dar a resposta, só ajudar!)<br>
                         • 📊 Dicas do SIMULADOR (como melhorar sua fazenda)<br>
                         • 🌍 Informações sobre sustentabilidade<br>
                         • 💡 Tecnologias do futuro<br><br>
-                        <strong>Pergunte:</strong> "Me ensine sobre o quiz" ou "Dica para o simulador"!
+                        <strong>Pergunte:</strong> "Me dê uma dica sobre o quiz" ou "Dica para o simulador"!
                     </div>
                 </div>
                 
@@ -821,7 +879,7 @@
                 </div>
                 
                 <div class="quick-buttons">
-                    <button class="quick-btn" onclick="perguntaRapida('Me ensine sobre o quiz')">📖 Estudar para o Quiz</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Me dê uma dica sobre o quiz')">📖 Dica para o Quiz</button>
                     <button class="quick-btn" onclick="perguntaRapida('Dica para o simulador')">📊 Dicas do Simulador</button>
                     <button class="quick-btn" onclick="perguntaRapida('O que é agricultura sustentável?')">🌿 Agricultura Sustentável</button>
                     <button class="quick-btn" onclick="perguntaRapida('Benefícios da energia solar')">☀️ Energia Solar</button>
@@ -829,11 +887,11 @@
                 </div>
                 
                 <div class="sugestoes-grid">
-                    <button class="quick-btn" onclick="perguntaRapida('Qual a resposta da primeira pergunta do quiz?')">❓ Dica pergunta 1</button>
-                    <button class="quick-btn" onclick="perguntaRapida('Qual a resposta da segunda pergunta do quiz?')">❓ Dica pergunta 2</button>
-                    <button class="quick-btn" onclick="perguntaRapida('Qual a resposta da terceira pergunta do quiz?')">❓ Dica pergunta 3</button>
-                    <button class="quick-btn" onclick="perguntaRapida('Qual a resposta da quarta pergunta do quiz?')">❓ Dica pergunta 4</button>
-                    <button class="quick-btn" onclick="perguntaRapida('Qual a resposta da quinta pergunta do quiz?')">❓ Dica pergunta 5</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Dica pergunta 1 do quiz')">❓ Dica pergunta 1</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Dica pergunta 2 do quiz')">❓ Dica pergunta 2</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Dica pergunta 3 do quiz')">❓ Dica pergunta 3</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Dica pergunta 4 do quiz')">❓ Dica pergunta 4</button>
+                    <button class="quick-btn" onclick="perguntaRapida('Dica pergunta 5 do quiz')">❓ Dica pergunta 5</button>
                 </div>
             </div>
         </div>
@@ -955,11 +1013,11 @@
     // QUIZ (5 PERGUNTAS)
     // ================================================
     const perguntas = [
-        { texto: "❓ Qual tecnologia utiliza sensores para irrigação precisa e reduz desperdício de água em até 60%?", opts: ["Drone Agrícola", "Irrigação Inteligente", "Trator Autônomo", "Biotecnologia"], correta: 1 },
-        { texto: "❓ Qual prática agrícola ajuda a recuperar solos degradados e sequestrar carbono da atmosfera?", opts: ["Monocultura", "Agricultura Regenerativa", "Queimada controlada", "Uso excessivo de fertilizantes"], correta: 1 },
-        { texto: "❓ Qual fonte de energia renovável é mais vantajosa para propriedades rurais remotas?", opts: ["Carvão Mineral", "Energia Solar", "Diesel", "Gás Natural"], correta: 1 },
-        { texto: "❓ O que são bioinsumos na agricultura sustentável?", opts: ["Produtos químicos tóxicos", "Defensivos naturais à base de organismos vivos", "Agrotóxicos sintéticos", "Fertilizantes industriais"], correta: 1 },
-        { texto: "❓ Qual o benefício da rotação de culturas?", opts: ["Empobrece o solo", "Aumenta pragas", "Melhora a fertilidade do solo", "Reduz biodiversidade"], correta: 2 }
+        { texto: "❓ Qual tecnologia utiliza sensores para irrigação precisa e reduz desperdício de água em até 60%?", opts: ["Drone Agrícola", "Irrigação Inteligente", "Trator Autônomo", "Biotecnologia"], correta: 1, dica: "💡 DICA: Pense em um sistema que entrega água direto na raiz da planta, gota a gota!" },
+        { texto: "❓ Qual prática agrícola ajuda a recuperar solos degradados e sequestrar carbono da atmosfera?", opts: ["Monocultura", "Agricultura Regenerativa", "Queimada controlada", "Uso excessivo de fertilizantes"], correta: 1, dica: "💡 DICA: É uma prática que devolve vida ao solo, usando técnicas como plantio direto e adubação verde!" },
+        { texto: "❓ Qual fonte de energia renovável é mais vantajosa para propriedades rurais remotas?", opts: ["Carvão Mineral", "Energia Solar", "Diesel", "Gás Natural"], correta: 1, dica: "💡 DICA: Vem do sol e não precisa de fios elétricos até a propriedade!" },
+        { texto: "❓ O que são bioinsumos na agricultura sustentável?", opts: ["Produtos químicos tóxicos", "Defensivos naturais à base de organismos vivos", "Agrotóxicos sintéticos", "Fertilizantes industriais"], correta: 1, dica: "💡 DICA: São produtos feitos com fungos, bactérias ou insetos benéficos que combatem pragas naturalmente!" },
+        { texto: "❓ Qual o benefício da rotação de culturas?", opts: ["Empobrece o solo", "Aumenta pragas", "Melhora a fertilidade do solo", "Reduz biodiversidade"], correta: 2, dica: "💡 DICA: Plantar diferentes culturas em sequência evita que o solo perca nutrientes específicos!" }
     ];
     let perguntaAtual = 0, respostasUsuario = [], quizFinalizado = false;
     
@@ -976,7 +1034,7 @@
             btn.onclick = () => {
                 if(respostasUsuario[perguntaAtual] !== undefined){ document.getElementById('quizFeedback').innerHTML = '<span style="color:#c44536;">⚠️ Você já respondeu!</span>'; return; }
                 respostasUsuario[perguntaAtual] = idx;
-                document.getElementById('quizFeedback').innerHTML = idx === q.correta ? '<span style="color:#2d8c5a;">✅ Correto!</span>' : `<span style="color:#c44536;">❌ Errado! Correta é ${String.fromCharCode(65+q.correta)}</span>`;
+                document.getElementById('quizFeedback').innerHTML = idx === q.correta ? '<span style="color:#2d8c5a;">✅ Correto!</span>' : `<span style="color:#c44536;">❌ Errado! ${q.dica}</span>`;
                 document.querySelectorAll('.quiz-opt').forEach(opt => opt.style.opacity = '0.5');
             };
             container.appendChild(btn);
@@ -1011,20 +1069,37 @@
     carregarQuiz();
     
     // ================================================
-    // AGRIBOT RESPOSTAS COMPLETAS
+    // AGRIBOT - APENAS DICAS (SEM RESPOSTAS PRONTAS)
     // ================================================
     function responderBot(pergunta) {
         const p = pergunta.toLowerCase();
         
-        if(p.includes('quiz') || p.includes('me ensine sobre o quiz') || p.includes('estudar para o quiz')) {
-            return "📚 *ESTUDE PARA O QUIZ COM O AGRIBOT!* 📚\n\n" +
-                   "Aqui estão as RESPOSTAS do quiz para você estudar:\n\n" +
-                   "❓ **Pergunta 1:** Qual tecnologia economiza água? → *IRRIGAÇÃO INTELIGENTE* (Ela reduz desperdício em até 60%!)\n\n" +
-                   "❓ **Pergunta 2:** Prática que recupera solos? → *AGRICULTURA REGENERATIVA* (Sequestra carbono e melhora o solo!)\n\n" +
-                   "❓ **Pergunta 3:** Melhor energia para áreas remotas? → *ENERGIA SOLAR* (Renovável e independente!)\n\n" +
-                   "❓ **Pergunta 4:** O que são bioinsumos? → *DEFENSIVOS NATURAIS* (Alternativa ecológica aos químicos!)\n\n" +
-                   "❓ **Pergunta 5:** Benefício da rotação de culturas? → *MELHORA A FERTILIDADE DO SOLO* (Evita o esgotamento!)\n\n" +
-                   "💡 *DICA:* Estude essas respostas e você vai tirar NOTA MÁXIMA! 🌟";
+        // DICAS PARA O QUIZ
+        if(p.includes('dica pergunta 1') || (p.includes('pergunta 1') && p.includes('dica'))) {
+            return "💡 *DICA PERGUNTA 1:*\n\n" + perguntas[0].dica + "\n\n🌟 Pense em algo que entrega água direto na raiz da planta!";
+        }
+        if(p.includes('dica pergunta 2') || (p.includes('pergunta 2') && p.includes('dica'))) {
+            return "💡 *DICA PERGUNTA 2:*\n\n" + perguntas[1].dica + "\n\n🌱 Essa prática devolve vida ao solo usando técnicas naturais!";
+        }
+        if(p.includes('dica pergunta 3') || (p.includes('pergunta 3') && p.includes('dica'))) {
+            return "💡 *DICA PERGUNTA 3:*\n\n" + perguntas[2].dica + "\n\n☀️ O sol é a chave para essa energia!";
+        }
+        if(p.includes('dica pergunta 4') || (p.includes('pergunta 4') && p.includes('dica'))) {
+            return "💡 *DICA PERGUNTA 4:*\n\n" + perguntas[3].dica + "\n\n🦠 Feitos com fungos, bactérias ou insetos benéficos!";
+        }
+        if(p.includes('dica pergunta 5') || (p.includes('pergunta 5') && p.includes('dica'))) {
+            return "💡 *DICA PERGUNTA 5:*\n\n" + perguntas[4].dica + "\n\n🔄 Alternar culturas ajuda o solo a não ficar cansado!";
+        }
+        
+        if(p.includes('quiz') || p.includes('dica para o quiz') || p.includes('me dê uma dica sobre o quiz')) {
+            return "📚 *DICAS PARA ESTUDAR PARA O QUIZ:*\n\n" +
+                   "Aqui estão dicas (sem dar a resposta direta!):\n\n" +
+                   "❓ **Pergunta 1:** " + perguntas[0].dica + "\n\n" +
+                   "❓ **Pergunta 2:** " + perguntas[1].dica + "\n\n" +
+                   "❓ **Pergunta 3:** " + perguntas[2].dica + "\n\n" +
+                   "❓ **Pergunta 4:** " + perguntas[3].dica + "\n\n" +
+                   "❓ **Pergunta 5:** " + perguntas[4].dica + "\n\n" +
+                   "💡 Use as dicas e você vai conseguir acertar! Boa sorte! 🌟";
         }
         
         if(p.includes('simulador') || p.includes('dica para o simulador')) {
@@ -1084,19 +1159,9 @@
                    "🌟 Essas tecnologias estão REVOLUCIONANDO o campo brasileiro!";
         }
         
-        if(p.includes('resposta') || p.includes('pergunta')) {
-            return "📖 *DICAS DAS RESPOSTAS DO QUIZ:*\n\n" +
-                   "• P1: Irrigação Inteligente (letra B)\n" +
-                   "• P2: Agricultura Regenerativa (letra B)\n" +
-                   "• P3: Energia Solar (letra B)\n" +
-                   "• P4: Defensivos naturais (letra B)\n" +
-                   "• P5: Melhora a fertilidade do solo (letra C)\n\n" +
-                   "Estude e vai arrasar no quiz! 🎯";
-        }
-        
         return "🌱 *AGRIBOT - SEU ASSISTENTE DE ESTUDOS* 🌱\n\n" +
                "Posso te ajudar com:\n\n" +
-               "📖 *'Me ensine sobre o quiz'* → estudo para as perguntas\n" +
+               "📖 *'Me dê uma dica sobre o quiz'* → dicas para estudar (sem dar a resposta!)\n" +
                "📊 *'Dica para o simulador'* → como vencer no jogo\n" +
                "🌿 *'O que é agricultura sustentável?'* → conceitos importantes\n" +
                "☀️ *'Benefícios da energia solar'* → vantagens para o campo\n" +
