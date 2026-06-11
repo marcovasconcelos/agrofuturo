@@ -340,7 +340,7 @@ function reiniciarQuiz() {
 carregarQuiz();
 
 // ================================================
-// AGRIBOT - ASSISTENTE VIRTUAL (APENAS DICAS)
+// AGRIBOT - ASSISTENTE VIRTUAL
 // ================================================
 
 function responderBot(pergunta) {
@@ -496,7 +496,6 @@ function ativarEasterEgg() {
         msg.style.fontSize = "1.3rem";
         msg.style.fontWeight = "bold";
         msg.style.boxShadow = "0 10px 40px rgba(0,0,0,0.3)";
-        msg.style.animation = "pulse 0.5s ease";
         
         document.body.appendChild(msg);
         setTimeout(() => msg.remove(), 3000);
