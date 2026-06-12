@@ -60,7 +60,7 @@ function toggleTheme() {
 
 function mudarFonte(fonte) {
     const body = document.body;
-    body.classList.remove('font-default', 'font-moderna', 'font-classica', 'font-futurista', 'font-natureza');
+    body.classList.remove('font-default', 'font-moderna', 'font-classica');
     body.classList.add(`font-${fonte}`);
     localStorage.setItem('fonte', fonte);
 }
@@ -68,7 +68,7 @@ function mudarFonte(fonte) {
 function resetarConfiguracoes() {
     document.body.classList.remove('dark');
     document.body.classList.add('light');
-    document.body.classList.remove('font-moderna', 'font-classica', 'font-futurista', 'font-natureza');
+    document.body.classList.remove('font-moderna', 'font-classica');
     document.body.classList.add('font-default');
     localStorage.setItem('theme', 'light');
     localStorage.setItem('fonte', 'default');
